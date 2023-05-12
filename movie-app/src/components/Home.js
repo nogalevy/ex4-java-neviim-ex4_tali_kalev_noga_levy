@@ -2,27 +2,26 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import useFetch from "./useFetch";
 
-//NOGA: move api key and use the useFetch hook
-// const API_KEY = "3285bfe9a9135db7c2dc2f19ede60c9a";
-// const DOMAIN = "https://api.themoviedb.org/3";
+const TRENDING_PAGE = '/trending/all/week?&language=en-US&';
 const Home = ({searchValue}) => {
-    const { error, isPending, data: list } = useFetch('/trending/all/week?&language=en-US&')
+    // const query = encodeURIComponent(searchValue);
+    const [url, setUrl] = useState(TRENDING_PAGE)
+    const { error, isPending, data: list } = useFetch(url)
     // g-4 row row-cols-lg-4 row-cols-md-3 row-cols-1
     console.log(searchValue);
 
-    // useEffect(()=>{
-    //     const query = 'cat';
-    //     let url;
-    //     url = searchValue.isEmpty() ? '/trending/all/week?&language=en-US&' : `/search/multi?query=${query}&include_adult=false&language=en-US&page=1`;
-    //     useFetch(url);
-    // },[searchValue])
+    useEffect(()=>{
+        let u;
+        u = searchValue ? `/search/multi?query=${searchValue}&include_adult=false&language=en-US&page=1` : TRENDING_PAGE;
+        setUrl(u);
+    },[searchValue])
 
     const createGrid = () =>{
         console.log("here", list)
         return list.length > 0 && list.map(element => {
             let img = element.poster_path || element.backdrop_path;
             return (
-                <div className="col">
+                <div className="col" key={element.id}>
                     <div className="card">
                         <img src={`https://image.tmdb.org/t/p/w500${img}`}
                              className="card-img-top" alt={element.name}/>
