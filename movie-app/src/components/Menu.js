@@ -1,7 +1,10 @@
 import {Link} from 'react-router-dom';
 import {Outlet} from "react-router";
+import {useState} from "react";
+import Search from "./Search";
 
-export default function Menu(props) {
+export default function Menu({handleSearchSubmit}) {
+
     return (
         <>
         <nav className="shadow p-3 mb-5 rounded navbar navbar-expand-lg navbar-dark bg-dark">
@@ -35,10 +38,7 @@ export default function Menu(props) {
                             </ul>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <Search handleSearchSubmit={handleSearchSubmit}/>
                 </div>
             </div>
         </nav>

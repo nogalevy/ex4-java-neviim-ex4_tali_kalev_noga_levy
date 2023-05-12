@@ -1,29 +1,21 @@
-import {Link} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import axios from "axios";
+import useFetch from "./useFetch";
 
 //NOGA: move api key and use the useFetch hook
-const API_KEY = "3285bfe9a9135db7c2dc2f19ede60c9a";
-const DOMAIN = "https://api.themoviedb.org/3";
-const Home = (props) => {
-    const [list, setList] = useState([]);
+// const API_KEY = "3285bfe9a9135db7c2dc2f19ede60c9a";
+// const DOMAIN = "https://api.themoviedb.org/3";
+const Home = ({searchValue}) => {
+    const { error, isPending, data: list } = useFetch('/trending/all/week?&language=en-US&')
     // g-4 row row-cols-lg-4 row-cols-md-3 row-cols-1
+    console.log(searchValue);
 
-    //NOGA: just for now
-    useEffect(()=>{
-       async function fetchData() {
-           const query = 'cat';
-           try{
-               const res = await axios(`${DOMAIN}/search/multi?query=${query}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`);
-               setList(res.data.results);
-               console.log(res.data.results);
-           }
-           catch(err){
-
-           }
-       }
-       fetchData();
-    }, [])
+    // useEffect(()=>{
+    //     const query = 'cat';
+    //     let url;
+    //     url = searchValue.isEmpty() ? '/trending/all/week?&language=en-US&' : `/search/multi?query=${query}&include_adult=false&language=en-US&page=1`;
+    //     useFetch(url);
+    // },[searchValue])
 
     const createGrid = () =>{
         console.log("here", list)
@@ -43,17 +35,19 @@ const Home = (props) => {
             )
         })
     }
+    //Tali: switch loading print to something nicerrrrrr
     return (
         <div className="mt-4 container">
             <div className="g-4 row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
-                {createGrid()}
+                { error && <div>{ error }</div> }
+                { isPending && <div>Loading...</div> }
+                { list && createGrid() }
             </div>
         </div>
-
     );
 }
 
-export default Home;
+export default Home; //Tali: make sure uniform
 
 // NOGA: example for movie object data:
 // [

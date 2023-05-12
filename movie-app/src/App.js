@@ -6,14 +6,22 @@ import Cart from "./components/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import PageWithData from "./components/PageWithData";
 import './stylesheets/colors.css';
+import {useState} from "react";
 
 const App = () => {
+    const[searchValue, setSearchValue] = useState('');
+
+    const handleSearchSubmit = (value) => {
+        setSearchValue(value)
+    }
+
     return (
         <div className="bg-dark text-light w-100 h-100">
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Menu/>}>
-                        <Route index element={<Home/>}/>
+                    {/*Tali: question, why this hierarchy?*/}
+                    <Route path="/" element={<Menu handleSearchSubmit={handleSearchSubmit}/>}>
+                        <Route index element={<Home searchValue={searchValue}/>}/>
                         <Route path="/cart" element={<Cart/>}/>
                         {/*<Route path="/checkout" element={<Checkout/>}/>*/}
                         <Route path={"*"} element={<NotFound/>}/>
