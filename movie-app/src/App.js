@@ -15,6 +15,8 @@ const App = () => {
         setSearchValue(value)
     }
 
+    //tali: thoughts - lets say we want to wrap menu and home with search context provider?
+    //is this a good idea, do we need to change the hierarchical order?
     return (
         <div className="bg-dark text-light w-100 h-100">
             <BrowserRouter>
