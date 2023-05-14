@@ -1,22 +1,22 @@
-import {useEffect, useState} from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
+import Spinner from './Spinner';
 
 const TRENDING_PAGE = '/trending/all/week?&language=en-US&';
-const Home = ({searchValue}) => {
+const Home = ({ searchValue }) => {
     // const query = encodeURIComponent(searchValue);
     const [url, setUrl] = useState(TRENDING_PAGE)
     const { error, isPending, data: list } = useFetch(url)
     // g-4 row row-cols-lg-4 row-cols-md-3 row-cols-1
     console.log(searchValue);
 
-    useEffect(()=>{
+    useEffect(() => {
         let u;
         u = searchValue ? `/search/multi?query=${searchValue}&include_adult=false&language=en-US&page=1` : TRENDING_PAGE;
         setUrl(u);
-    },[searchValue])
+    }, [searchValue])
 
-    const createGrid = () =>{
+    const createGrid = () => {
         console.log("here", list)
         return list.length > 0 && list.map(element => {
             let img = element.poster_path || element.backdrop_path;
@@ -24,10 +24,13 @@ const Home = ({searchValue}) => {
                 <div className="col" key={element.id}>
                     <div className="card">
                         <img src={`https://image.tmdb.org/t/p/w500${img}`}
-                             className="card-img-top" alt={element.name}/>
+                            className="card-img-top" alt={element.name} />
                         <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text text-dark">{element.name}</p>
+                            <p className="card-title text-dark">{element.name || "unknown name"} </p>
+                            {/* <p className="card-text text-dark">{element.name}</p> */}
+                        </div>
+                        <div class="card-footer">
+                            <button  className="btn  card-title text-dark"> +  </button>
                         </div>
                     </div>
                 </div>
@@ -38,9 +41,9 @@ const Home = ({searchValue}) => {
     return (
         <div className="mt-4 container">
             <div className="g-4 row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
-                { error && <div>{ error }</div> }
-                { isPending && <div>Loading...</div> }
-                { list && createGrid() }
+                {error && <div>{error}</div>}
+                {isPending && <Spinner/>}
+                {list && createGrid()}
             </div>
         </div>
     );

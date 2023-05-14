@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom';
 import {Outlet} from "react-router";
-import {useState} from "react";
 import Search from "./Search";
 
 export default function Menu({handleSearchSubmit}) {

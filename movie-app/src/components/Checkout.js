@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const exampleList = [
     {
@@ -25,43 +25,30 @@ const exampleList = [
 ]
 
 export default function Cart(props) {
-    const [list, setList] = useState(exampleList)
-
-    const createList = () => {
-        return list && list.map((element) => {
-            let img = element.poster_path || element.backdrop_path;
-            return (
-                <div class="card mb-3 text-bg-light" style={{
-                    maxWidth: "540px"
-                }}>
-                    <div class="row g-0 ">
-                        <div class="col-md-4">
-                            <img src={`https://image.tmdb.org/t/p/w500${img}`} class="img-fluid rounded-start" alt="..." />
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{element.name}</h5>
-                                <p class="card-text">{element.price}$</p>
-                            </div>
-                            <div class="card-footer bg-transparent border-success">
-                                <button>delete</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div >
-            )
-        })
-    }
 
     return (
-        <>
-            <h3>cart</h3>
-            <div className="m-auto">
-                {createList()}
-            </div>
-            <Link className="btn btn-primary mb-3" to="/checkout">checkout</Link>
-        </>
+        <div className="container">
+            <h3>checkout</h3>
+            <form className="m-auto form-floating text-dark">
+                <div class="row">
+                    <div class="form-floating mb-3 col">
+                        <input type="text" class="form-control" id="floatingFirst" placeholder="first name" />
+                        <label for="floatingFirst">first name</label>
+                    </div>
+                    <div class="form-floating col">
+                        <input type="text" class="form-control" id="floatingLast" placeholder="last name" />
+                        <label for="floatingLast">last name</label>
+                    </div>
+                </div>
+                <div class="form-floating ">
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="name@gmail.com" />
+                    <label for="floatingEmail">email</label>
+                </div>
+                <div class="m-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
 
     );
 }
