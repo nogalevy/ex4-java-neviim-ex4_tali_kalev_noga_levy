@@ -31,6 +31,7 @@ export default function Cart(props) {
         return list && list.map((element) => {
             let img = element.poster_path || element.backdrop_path;
             return (
+                //NOGA: move to new component
                 <div class="card mb-3 text-bg-light" style={{
                     maxWidth: "540px"
                 }}>
@@ -47,7 +48,6 @@ export default function Cart(props) {
                                 <button>delete</button>
                             </div>
                         </div>
-
                     </div>
                 </div >
             )

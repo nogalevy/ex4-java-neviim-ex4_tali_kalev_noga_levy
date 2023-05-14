@@ -21,12 +21,13 @@ const Home = ({ searchValue }) => {
         return list.length > 0 && list.map(element => {
             let img = element.poster_path || element.backdrop_path;
             return (
+                //NOGA: move to new component
                 <div className="col" key={element.id}>
                     <div className="card">
                         <img src={`https://image.tmdb.org/t/p/w500${img}`}
                             className="card-img-top" alt={element.name} />
                         <div className="card-body">
-                            <p className="card-title text-dark">{element.name || "unknown name"} </p>
+                            <p className="card-title text-dark">{element.name || element.title || "unknown name"} </p>
                             {/* <p className="card-text text-dark">{element.name}</p> */}
                         </div>
                         <div class="card-footer">
@@ -37,7 +38,7 @@ const Home = ({ searchValue }) => {
             )
         })
     }
-    //Tali: switch loading print to something nicerrrrrr
+    
     return (
         <div className="mt-4 container">
             <div className="g-4 row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
