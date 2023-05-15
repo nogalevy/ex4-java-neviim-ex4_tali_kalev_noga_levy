@@ -3,6 +3,7 @@ import useFetch from "./useFetch";
 import Spinner from './Spinner';
 
 const TRENDING_PAGE = '/trending/all/week?&language=en-US&';
+// const TRENDING_PAGE = '/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2020&sort_by=primary_release_date.desc';
 const Home = ({ searchValue }) => {
     // const query = encodeURIComponent(searchValue);
     const [url, setUrl] = useState(TRENDING_PAGE)
