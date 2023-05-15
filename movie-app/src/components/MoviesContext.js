@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 
-const SearchContext = React.createContext();
+const MoviesContext = React.createContext();
 
 /**
  * A component that renders some children wrapped
@@ -9,26 +9,28 @@ const SearchContext = React.createContext();
  * @returns {JSX.Element}
  * @constructor
  */
-export function SearchProvider({children}){
-    const[search, setValue] = useState('')
+export function MoviesProvider({children}){
+    const [moviesData, setMoviesData] = useState({error:null,isPending: true, data:[]})
 
-    const value = {search, setValue}
+    const value = {moviesData, setMoviesData}
+    console.log("HERE", moviesData)
     return(
-        <SearchContext.Provider value={value}>
+        <MoviesContext.Provider value={{moviesData, setMoviesData}}>
             {children}
-        </SearchContext.Provider>
+        </MoviesContext.Provider>
     );
 }
 
 /**
- * A function (custom hook) that returns the count context
+ * A function (custom hook) that returns the context
  * the consumer of context must have access, in other words
  * it must be below a CountContext.Provider.
  * The function CountProvider.Consumer is a shorthand for it
  * @returns {unknown}
  */
-export function useSearch() {
-    const context = useContext(SearchContext)
+export function useMoviesContext() {
+    const context = useContext(MoviesContext)
+    console.log(context)
     if (context === undefined) {
         throw new Error('useCount must be used within a SearchProvider')
     }

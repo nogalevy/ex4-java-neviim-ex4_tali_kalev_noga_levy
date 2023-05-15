@@ -1,25 +1,14 @@
 import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
 import Spinner from './Spinner';
+import {useMoviesContext} from "./MoviesContext";
 
-const TRENDING_PAGE = '/trending/all/week?&language=en-US&';
-// const TRENDING_PAGE = '/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2020&sort_by=primary_release_date.desc';
-const Home = ({ searchValue }) => {
-    // const query = encodeURIComponent(searchValue);
-    const [url, setUrl] = useState(TRENDING_PAGE)
-    const { error, isPending, data: list } = useFetch(url)
-    // g-4 row row-cols-lg-4 row-cols-md-3 row-cols-1
-    console.log(searchValue);
-
-    useEffect(() => {
-        let u;
-        u = searchValue ? `/search/multi?query=${searchValue}&include_adult=false&language=en-US&page=1` : TRENDING_PAGE;
-        setUrl(u);
-    }, [searchValue])
+const Home = () => {
+    const {moviesData} = useMoviesContext();
 
     const createGrid = () => {
-        console.log("here", list)
-        return list.length > 0 && list.map(element => {
+        console.log("here", moviesData.data)
+        return moviesData.data.length > 0 && moviesData.data.map(element => {
             let img = element.poster_path || element.backdrop_path;
             return (
                 //NOGA: move to new component
@@ -43,9 +32,9 @@ const Home = ({ searchValue }) => {
     return (
         <div className="mt-4 container">
             <div className="g-4 row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
-                {error && <div>{error}</div>}
-                {isPending && <Spinner/>}
-                {list && createGrid()}
+                {moviesData.error && <div>{moviesData.error}</div>}
+                {moviesData.isPending && <Spinner/>}
+                {moviesData.data && createGrid()}
             </div>
         </div>
     );

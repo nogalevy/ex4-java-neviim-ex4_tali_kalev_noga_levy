@@ -10,6 +10,7 @@ export default function useFetch(url){
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
+
     useEffect(()=>{
         const fetchData = async () =>  {
             try{
