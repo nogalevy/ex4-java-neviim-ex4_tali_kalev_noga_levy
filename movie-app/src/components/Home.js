@@ -1,33 +1,20 @@
-import { useEffect, useState } from "react";
-import useFetch from "./useFetch";
 import Spinner from './Spinner';
-import {useCart} from "../contexts/CartContext";
-import AddToCart from "./AddToCart";
+import AddToCart from './AddToCart';
+import {useMoviesContext} from "./MoviesContext";
+import { useCart } from "../contexts/CartContext";
 
-
-const TRENDING_PAGE = '/trending/all/week?&language=en-US&';
-const Home = ({ searchValue }) => {
-    // const query = encodeURIComponent(searchValue);
-    const [url, setUrl] = useState(TRENDING_PAGE)
-    const { error, isPending, data: list } = useFetch(url);
+const Home = () => {
+    const {moviesData} = useMoviesContext();
     const {state, dispatch} = useCart();
 
-    // console.log(searchValue);
-
-    useEffect(() => {
-        let u;
-        u = searchValue ? `/search/multi?query=${searchValue}&include_adult=false&language=en-US&page=1` : TRENDING_PAGE;
-        setUrl(u);
-    }, [searchValue])
-
     const addToCart = (index) =>{
-        dispatch({type: 'add' , payload: list[index] });
+        dispatch({type: 'add' , payload: moviesData.data[index] });
         // console.log("state", state)
     }
 
     const createGrid = () => {
-        console.log("here", list)
-        return list.length > 0 && list.map((element, index) => {
+        console.log("here", moviesData.data)
+        return moviesData.data.length > 0 && moviesData.data.map((element, index) => {
             let img = element.poster_path || element.backdrop_path;
             return (
                 //NOGA: move to new component
@@ -49,9 +36,9 @@ const Home = ({ searchValue }) => {
     return (
         <div className="mt-4 container">
             <div className="g-4 row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
-                {error && <div>{error}</div>}
-                {isPending && <Spinner/>}
-                {list && createGrid()}
+                {moviesData.error && <div>{moviesData.error}</div>}
+                {moviesData.isPending && <Spinner/>}
+                {moviesData.data && createGrid()}
             </div>
         </div>
     );
