@@ -1,9 +1,11 @@
 import {Link} from 'react-router-dom';
 import {Outlet} from "react-router";
 import Search from "./Search";
+import {useCart} from "../contexts/CartContext";
 
 export default function Menu({handleSearchSubmit}) {
-
+    const {state} = useCart()
+    console.log(state)
     return (
         <>
         <nav className="shadow p-3 mb-5 rounded navbar navbar-expand-lg navbar-dark bg-dark">

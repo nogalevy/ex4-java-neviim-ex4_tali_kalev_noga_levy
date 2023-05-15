@@ -32,19 +32,19 @@ export default function Cart(props) {
             let img = element.poster_path || element.backdrop_path;
             return (
                 //NOGA: move to new component
-                <div class="card mb-3 text-bg-light" style={{
+                <div className="card mb-3 text-bg-light" style={{
                     maxWidth: "540px"
                 }}>
-                    <div class="row g-0 ">
-                        <div class="col-md-4">
-                            <img src={`https://image.tmdb.org/t/p/w500${img}`} class="img-fluid rounded-start" alt="..." />
+                    <div className="row g-0 ">
+                        <div className="col-md-4">
+                            <img src={`https://image.tmdb.org/t/p/w500${img}`} className="img-fluid rounded-start" alt="..." />
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{element.name}</h5>
-                                <p class="card-text">{element.price}$</p>
+                        <div className="col-md-8">
+                            <div className="card-body">
+                                <h5 className="card-title">{element.name}</h5>
+                                <p className="card-text">{element.price}$</p>
                             </div>
-                            <div class="card-footer bg-transparent border-success">
+                            <div className="card-footer bg-transparent border-success">
                                 <button>delete</button>
                             </div>
                         </div>

@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
 import Spinner from './Spinner';
+import {useCart} from "../contexts/CartContext";
+import AddToCart from "./AddToCart";
+
 
 const TRENDING_PAGE = '/trending/all/week?&language=en-US&';
 const Home = ({ searchValue }) => {
     // const query = encodeURIComponent(searchValue);
     const [url, setUrl] = useState(TRENDING_PAGE)
-    const { error, isPending, data: list } = useFetch(url)
-    // g-4 row row-cols-lg-4 row-cols-md-3 row-cols-1
-    console.log(searchValue);
+    const { error, isPending, data: list } = useFetch(url);
+    const {state, dispatch} = useCart();
+
+    // console.log(searchValue);
 
     useEffect(() => {
         let u;
@@ -16,9 +20,14 @@ const Home = ({ searchValue }) => {
         setUrl(u);
     }, [searchValue])
 
+    const addToCart = (index) =>{
+        dispatch({type: 'add' , payload: list[index] });
+        // console.log("state", state)
+    }
+
     const createGrid = () => {
         console.log("here", list)
-        return list.length > 0 && list.map(element => {
+        return list.length > 0 && list.map((element, index) => {
             let img = element.poster_path || element.backdrop_path;
             return (
                 //NOGA: move to new component
@@ -30,9 +39,7 @@ const Home = ({ searchValue }) => {
                             <p className="card-title text-dark">{element.name || element.title || "unknown name"} </p>
                             {/* <p className="card-text text-dark">{element.name}</p> */}
                         </div>
-                        <div class="card-footer">
-                            <button  className="btn  card-title text-dark"> +  </button>
-                        </div>
+                        <AddToCart addToCart={()=>addToCart(index)} index={index}/>
                     </div>
                 </div>
             )
