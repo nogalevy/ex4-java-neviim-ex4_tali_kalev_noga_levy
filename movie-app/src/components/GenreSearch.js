@@ -17,21 +17,17 @@ function genreReducer(state, action){
 }
 
 export default function GenreSearch(){
-    //fetch genres
     //AND between genres, %2C, OR between genres %7C
-    //show drop down list
     const U = '/genre/movie/list?language=en'
-    const { error, isPending, data } = useFetch(U);
-    console.log("GENRES",error, isPending, data);
+    const {data } = useFetch(U);
+    console.log("GENRES",data);
     const [state, dispatch] = useReducer(genreReducer,{genres:[]})
-    console.log("okkkk",state)
 
     const getGenres = ()=>{
         const genres=data['genres']
         console.log("hheeeeee", genres)
         return genres.length > 0 && genres.map((element) => {
             return (
-                // <li><a className="dropdown-item" id={element.id} href="\">{element.name}</a></li>
                 <li>
                     <a className="dropdown-item" href="#">
                         <div className="form-check">
@@ -48,16 +44,10 @@ export default function GenreSearch(){
         <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="\" role="button" data-bs-toggle="dropdown"
                aria-expanded="false">
-                Dropdown
+                Choose Genre
             </a>
             <ul className="dropdown-menu">
                 {data && getGenres()}
-                {/*<li><a className="dropdown-item" href="\">Movies</a></li>*/}
-                {/*<li><a className="dropdown-item" href="\">TV</a></li>*/}
-                {/*<li>*/}
-                {/*    <hr className="dropdown-divider"/>*/}
-                {/*</li>*/}
-                {/*<li><a className="dropdown-item" href="\">Something else here</a></li>*/}
             </ul>
         </li>
     );

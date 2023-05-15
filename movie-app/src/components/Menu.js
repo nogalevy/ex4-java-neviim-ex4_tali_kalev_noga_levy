@@ -9,10 +9,10 @@ export default function Menu() {
 
     return (
         <>
-        <nav className="shadow p-3 mb-5 rounded navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="shadow p-3 mb-5 rounded navbar navbar-expand-sm navbar-dark bg-dark">
             <div className="container-fluid">
                 <div className="navbar-brand">
-                    <Link className="nav-link" to="/">MoviesMD</Link>
+                    <Link className="nav-link" to="/">TNDB</Link>
                 </div>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
