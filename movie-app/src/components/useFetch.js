@@ -14,12 +14,14 @@ export default function useFetch(url){
     useEffect(()=>{
         const fetchData = async () =>  {
             try{
+                console.log("INFETCH", url)
                 // const res = await axios(`${DOMAIN}/search/multi?query=${query}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`);
                 const res = await axios(DOMAIN + url + `&api_key=` + API_KEY);
 
-                setData(res.data.results);
+                //tali: wouldnt let me access results in home and genre doesnt have results, different structure
+                const dataToReturn = res.data.results ? res.data.results : res.data;
+                setData(dataToReturn);
                 setError(null);
-                console.log(res.data.results);
             }catch(err){
                 setError(err.message);
                 console.log(err)

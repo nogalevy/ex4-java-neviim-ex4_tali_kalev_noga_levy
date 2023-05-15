@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
-import {InputTypes} from "./consts";
-import {useMoviesContext} from "./MoviesContext";
+import {InputTypes} from "../consts/consts";
+import {useMoviesContext} from "../contexts/MoviesContext";
 import useFetch from "./useFetch";
 
-const TRENDING_PAGE = '/trending/all/week?&language=en-US&';
-
+const TRENDING_PAGE = '/trending/all/week?&language=en-US';
+// const TRENDING_PAGE ='/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=99'
 export default function SearchInput({inputType}){
     const [url, setUrl] = useState(TRENDING_PAGE)
     const [submitInput, setSubmitInput] = useState('');
@@ -27,6 +27,7 @@ export default function SearchInput({inputType}){
             u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=${submitInput}&sort_by=primary_release_date.desc`
         }
         setUrl(u);
+        setSubmitInput('')
     }
 
     return(

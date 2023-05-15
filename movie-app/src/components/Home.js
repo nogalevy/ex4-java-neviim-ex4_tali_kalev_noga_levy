@@ -1,6 +1,6 @@
 import Spinner from './Spinner';
 import AddToCart from './AddToCart';
-import {useMoviesContext} from "./MoviesContext";
+import {useMoviesContext} from "../contexts/MoviesContext";
 import { useCart } from "../contexts/CartContext";
 
 const Home = () => {

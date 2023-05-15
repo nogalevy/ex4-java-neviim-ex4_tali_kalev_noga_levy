@@ -13,9 +13,8 @@ export function MoviesProvider({children}){
     const [moviesData, setMoviesData] = useState({error:null,isPending: true, data:[]})
 
     const value = {moviesData, setMoviesData}
-    console.log("HERE", moviesData)
     return(
-        <MoviesContext.Provider value={{moviesData, setMoviesData}}>
+        <MoviesContext.Provider value={value}>
             {children}
         </MoviesContext.Provider>
     );
@@ -30,7 +29,6 @@ export function MoviesProvider({children}){
  */
 export function useMoviesContext() {
     const context = useContext(MoviesContext)
-    console.log(context)
     if (context === undefined) {
         throw new Error('useCount must be used within a SearchProvider')
     }
