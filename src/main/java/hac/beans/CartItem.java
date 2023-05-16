@@ -1,8 +1,9 @@
-package hac;
+package hac.beans;
 
-import java.io.Serializable;
+import org.springframework.stereotype.Component;
 
-public class CartItem implements Serializable {
+@Component
+public class CartItem {
     private Integer id; //NOGA: string?
     private String price;
     private String name;

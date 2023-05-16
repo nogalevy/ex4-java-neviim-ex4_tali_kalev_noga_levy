@@ -15,7 +15,10 @@ const CartContext = React.createContext();
  */
 function cartReducer(state = {cart: []}, action) {
     switch (action.type) {
-        // case 'deleteItem': {
+        case 'init': {
+            return {cart : action.payload}
+        }
+            // case 'deleteItem': {
         //     return state.filter((elem) => elem.id !== action.payload.id);
         // }
         case 'add': {

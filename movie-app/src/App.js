@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import PageWithData from "./components/PageWithData";
 import './stylesheets/colors.css';
 import { MoviesProvider } from "./contexts/MoviesContext";
-import { CartProvider } from "./contexts/CartContext";
+import {CartProvider} from "./contexts/CartContext";
 
 const App = () => {
     return (

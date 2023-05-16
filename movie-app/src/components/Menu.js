@@ -3,9 +3,25 @@ import {Outlet} from "react-router";
 import Search from "./Search";
 import {useCart} from "../contexts/CartContext";   
 import GenreSearch from "./GenreSearch";
+import {useEffect} from "react";
+import axios from "axios";
 
 export default function Menu() {
-    const {state} = useCart()
+    // const {state} = useCart()
+
+    const {dispatch} = useCart();
+
+    useEffect(()=>{
+        async function getCart(){
+            try{
+                let res = await axios('/api/cart');
+                dispatch({type :'init', payload: res.data})
+            }
+            catch (e) {
+            }
+        }
+        getCart()
+    },[])
 
     return (
         <>

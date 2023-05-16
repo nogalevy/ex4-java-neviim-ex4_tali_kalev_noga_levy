@@ -1,27 +1,35 @@
 package hac;
 
-import hac.repo.Purchase;
-import hac.repo.PurchaseRepository;
+import hac.beans.CartItem;
+import hac.beans.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api")
 public class CartController {
-//    @Autowired
-//    private PurchaseRepository repository;  // this is the JPA repository (SQL database)
+    @Autowired //NOGA: ?
+    @Qualifier("sessionBeanCart")
+    private ShoppingCart shoppingCart;
 
     @GetMapping("/cart")
-    public int showPurchases() {
-        return 3;
+    public ArrayList<CartItem> showPurchases() {
+        return shoppingCart.getShoppingCart();
     }
 
     @PostMapping("/cart")
     public ResponseEntity<CartItem> addPurchase(@RequestBody final CartItem cartItem) {
-        //TODO: add to session
-        return ResponseEntity.ok(cartItem) ; // this is a JPA method to save a purchase to the database
+        //add to session
+        shoppingCart.add(cartItem);
+        System.out.println("added "+ cartItem.getTitle());
+        return ResponseEntity.ok(cartItem) ;
     }
+
+    //TODO: delete by id
+
+    //TODO: delete all
 }
