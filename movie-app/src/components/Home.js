@@ -2,15 +2,10 @@ import Spinner from './Spinner';
 import AddToCart from './AddToCart';
 import {useMoviesContext} from "../contexts/MoviesContext";
 import { useCart } from "../contexts/CartContext";
+import axios from "axios";
 
 const Home = () => {
     const {moviesData} = useMoviesContext();
-    const {state, dispatch} = useCart();
-
-    const addToCart = (index) =>{
-        dispatch({type: 'add' , payload: moviesData.data[index] });
-        // console.log("state", state)
-    }
 
     const createGrid = () => {
         console.log("here", moviesData.data)
@@ -20,13 +15,16 @@ const Home = () => {
                 //NOGA: move to new component
                 <div className="col" key={element.id}>
                     <div className="card">
+                        <div className="position-relative ">
+
                         <img src={`https://image.tmdb.org/t/p/w500${img}`}
                             className="card-img-top" alt={element.name} />
+                        <AddToCart itemData={moviesData.data[index]} index={index}/>
+                        </div>
+
                         <div className="card-body">
                             <p className="card-title text-dark">{element.name || element.title || "unknown name"} </p>
-                            {/* <p className="card-text text-dark">{element.name}</p> */}
                         </div>
-                        <AddToCart addToCart={()=>addToCart(index)} index={index}/>
                     </div>
                 </div>
             )

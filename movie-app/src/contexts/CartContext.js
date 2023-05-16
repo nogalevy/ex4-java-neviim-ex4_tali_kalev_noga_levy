@@ -20,7 +20,7 @@ function cartReducer(state = {cart: []}, action) {
         // }
         case 'add': {
             //check if the new item not exist in state
-            // console.log("action", action)
+            console.log("cart", state.cart)
             return { cart: [...state.cart, action.payload] };
         }
         default: {

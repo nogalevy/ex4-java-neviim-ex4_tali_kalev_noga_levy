@@ -28,7 +28,7 @@ export default function GenreSearch(){
         console.log("hheeeeee", genres)
         return genres.length > 0 && genres.map((element) => {
             return (
-                <li>
+                <li key={element.id}>
                     <a className="dropdown-item" href="#">
                         <div className="form-check">
                             <input className="form-check-input" onChange={()=>{dispatch({type: 'add' , payload: element.id});}} type="checkbox" value="" id={element.id}/>

@@ -1,38 +1,19 @@
 import { useState } from "react";
 import {Link} from 'react-router-dom';
-
-const exampleList = [
-    {
-        "price": 3.99, //NOGA: add
-        "backdrop_path": "/ogMd4e3A0uSNwZADzgC23zCByoi.jpg",
-        "id": 65334,
-        "name": "Miraculous: Tales of Ladybug & Cat Noir",
-        "original_language": "fr",
-        "overview": "Normal high school kids by day, protectors of Paris by night! Miraculous follows the heroic adventures of Marinette and Adrien as they transform into Ladybug and Cat Noir and set out to capture akumas, creatures responsible for turning the people of Paris into villains. But neither hero knows the other’s true identity – or that they’re classmates!",
-        "poster_path": "/psDcRgUX38cIeGeADwLRPyO7SYC.jpg",
-        "media_type": "tv",
-    },
-    {
-        "price": 3.99, //NOGA: add
-        "backdrop_path": "/ogMd4e3A0uSNwZADzgC23zCByoi.jpg",
-        "id": 65334,
-        "name": "Miraculous: Tales of Ladybug & Cat Noir",
-        "original_language": "fr",
-        "overview": "Normal high school kids by day, protectors of Paris by night! Miraculous follows the heroic adventures of Marinette and Adrien as they transform into Ladybug and Cat Noir and set out to capture akumas, creatures responsible for turning the people of Paris into villains. But neither hero knows the other’s true identity – or that they’re classmates!",
-        "poster_path": "/psDcRgUX38cIeGeADwLRPyO7SYC.jpg",
-        "media_type": "tv",
-    }
-]
+import {useCart} from "../contexts/CartContext";
+import {Trash3Fill} from 'react-bootstrap-icons';
 
 export default function Cart(props) {
-    const [list, setList] = useState(exampleList)
+    const {state, dispatch} = useCart();
 
+    console.log(state ? state.cart : null)
     const createList = () => {
-        return list && list.map((element) => {
+        return state && state.cart.map((element) => {
+            // TODO: fix (?)
             let img = element.poster_path || element.backdrop_path;
             return (
                 //NOGA: move to new component
-                <div className="card mb-3 text-bg-light" style={{
+                <div key={element.id} className="card mb-3 text-bg-light" style={{
                     maxWidth: "540px"
                 }}>
                     <div className="row g-0 ">
@@ -41,11 +22,14 @@ export default function Cart(props) {
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h5 className="card-title">{element.name}</h5>
+                                {/*TODO : fix this || (we have the save thing in Home component)*/}
+                                <h5 className="card-title">{element.name || element.title || "unknown name"}</h5>
                                 <p className="card-text">{element.price}$</p>
                             </div>
                             <div className="card-footer bg-transparent border-success">
-                                <button>delete</button>
+                                <button>
+                                    <Trash3Fill/>
+                                </button>
                             </div>
                         </div>
                     </div>
