@@ -2,13 +2,24 @@ import { useState } from "react";
 import {Link} from 'react-router-dom';
 import {useCart} from "../contexts/CartContext";
 import {Trash3Fill} from 'react-bootstrap-icons';
+import axios from "axios";
 
 export default function Cart(props) {
     const {state, dispatch} = useCart();
 
-    console.log(state ? state.cart : null)
+    const deleteItem = async (id) =>{
+        try{
+            const res = await axios.delete('/api/cart/' + id);
+            console.log("deleted " ,id, res);
+            dispatch({type:'delete', payload: {id}});
+        }
+        catch (err){
+
+        }
+    }
+
     const createList = () => {
-        return state && state.cart.map((element) => {
+        return state && state.cart && state.cart.map((element) => {
             // TODO: fix (?)
             let img = element.poster_path || element.backdrop_path;
             return (
@@ -27,7 +38,7 @@ export default function Cart(props) {
                                 <p className="card-text">{element.price}$</p>
                             </div>
                             <div className="card-footer bg-transparent border-success">
-                                <button>
+                                <button onClick={()=>deleteItem(element.id)}>
                                     <Trash3Fill/>
                                 </button>
                             </div>

@@ -18,12 +18,12 @@ function cartReducer(state = {cart: []}, action) {
         case 'init': {
             return {cart : action.payload}
         }
-            // case 'deleteItem': {
-        //     return state.filter((elem) => elem.id !== action.payload.id);
-        // }
+        case 'delete': {
+            return {cart: state.cart.filter((elem) => elem.id !== action.payload.id)};
+        }
         case 'add': {
             //check if the new item not exist in state
-            console.log("cart", state.cart)
+            // console.log("cart", state.cart)
             return { cart: [...state.cart, action.payload] };
         }
         default: {

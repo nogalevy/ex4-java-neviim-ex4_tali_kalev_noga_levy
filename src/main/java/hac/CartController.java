@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -17,19 +18,23 @@ public class CartController {
     private ShoppingCart shoppingCart;
 
     @GetMapping("/cart")
-    public ArrayList<CartItem> showPurchases() {
+    public Map<Integer, CartItem> getShoppingCart() {
         return shoppingCart.getShoppingCart();
     }
 
     @PostMapping("/cart")
-    public ResponseEntity<CartItem> addPurchase(@RequestBody final CartItem cartItem) {
+    public ResponseEntity<CartItem> addNewItem(@RequestBody final CartItem cartItem) {
         //add to session
         shoppingCart.add(cartItem);
         System.out.println("added "+ cartItem.getTitle());
         return ResponseEntity.ok(cartItem) ;
     }
 
-    //TODO: delete by id
+    @DeleteMapping("/cart/{id}")
+    public ResponseEntity<Integer> deleteItemById(@PathVariable Integer id) {
+        shoppingCart.deleteById(id);
+        return ResponseEntity.ok(id);
+    }
 
     //TODO: delete all
 }

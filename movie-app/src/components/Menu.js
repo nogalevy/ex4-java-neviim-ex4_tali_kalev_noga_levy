@@ -15,7 +15,7 @@ export default function Menu() {
         async function getCart(){
             try{
                 let res = await axios('/api/cart');
-                dispatch({type :'init', payload: res.data})
+                dispatch({type :'init', payload: Object.values(res.data)})
             }
             catch (e) {
             }

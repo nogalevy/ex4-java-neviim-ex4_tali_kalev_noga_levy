@@ -3,25 +3,31 @@ package hac.beans;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class ShoppingCart {
 
-    private ArrayList<CartItem> shoppingCart;
+    private Map<Integer, CartItem> shoppingCart;
 
     public ShoppingCart(){
-        this.shoppingCart = new ArrayList<>();
+        this.shoppingCart = new HashMap<>();
     }
 
-    public ArrayList<CartItem> getShoppingCart() {
+    public Map<Integer, CartItem> getShoppingCart() {
         return shoppingCart;
     }
 
-    public void setShoppingCart(ArrayList<CartItem> shoppingCart) {
+    public void setShoppingCart(Map<Integer, CartItem> shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 
     public void add (CartItem item){
-        shoppingCart.add(item);
+        shoppingCart.put(item.getId(), item);
+    }
+
+    public void deleteById (Integer id){
+        shoppingCart.remove(id);
     }
 }
