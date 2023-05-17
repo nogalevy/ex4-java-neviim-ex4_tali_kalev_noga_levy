@@ -9,7 +9,7 @@ import axios from "axios";
 export default function Menu() {
     // const {state} = useCart()
 
-    const {dispatch} = useCart();
+    const {state, dispatch} = useCart();
 
     useEffect(()=>{
         async function getCart(){
@@ -38,7 +38,14 @@ export default function Menu() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/cart">Cart</Link>
+                            <Link className="nav-link position-relative" to="/cart">Cart
+    {state.cart.length ?
+                                <span
+                                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {state.cart.length}
+                                    <span className="visually-hidden">unread messages</span>
+                                </span> : ""}
+                            </Link>
                         </li>
                         <GenreSearch/>
                     </ul>
