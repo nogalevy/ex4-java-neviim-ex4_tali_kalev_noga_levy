@@ -1,41 +1,56 @@
 import Spinner from './Spinner';
-import AddToCart from './AddToCart';
-import {useMoviesContext} from "../contexts/MoviesContext";
+import MovieCard from './MovieCard';
+import { useMoviesContext } from "../contexts/MoviesContext";
 import { useCart } from "../contexts/CartContext";
 import axios from "axios";
+import { useState } from 'react';
 
 const Home = () => {
-    const {moviesData} = useMoviesContext();
+    const { moviesData } = useMoviesContext();
+    // const [isCardLoad, setIsCardLoad] = useState(false)
 
     const createGrid = () => {
         console.log("here", moviesData.data)
         return moviesData.data.length > 0 && moviesData.data.map((element, index) => {
-            let img = element.poster_path || element.backdrop_path;
+            // let img = element.poster_path || element.backdrop_path;
             return (
                 //NOGA: move to new component
-                <div className="col" key={element.id}>
-                    <div className="card">
-                        <div className="position-relative ">
+                // <div className="col" key={element.id}>
 
-                        <img src={`https://image.tmdb.org/t/p/w500${img}`}
-                            className="card-img-top" alt={element.name} />
-                        <AddToCart itemData={moviesData.data[index]} index={index}/>
-                        </div>
+                //     <div className={`card ${!isCardLoad ? 'd-none' : ''}`}>
+                //         <div className="position-relative ">
+                //             <img onLoad={() => { setIsCardLoad(true); console.log("yes?") }} src={`https://image.tmdb.org/t/p/w500${img}`}
+                //                 className="card-img-top" alt={element.name} />
+                //             <AddToCart itemData={moviesData.data[index]} index={index} />
+                //         </div>
 
-                        <div className="card-body">
-                            <p className="card-title text-dark">{element.name || element.title || "unknown name"} </p>
-                        </div>
-                    </div>
-                </div>
+                //         <div className="card-body">
+                //             <p className="card-title text-dark">{element.name || element.title || "unknown name"} </p>
+                //         </div>
+                //     </div>
+
+                //     <div class={`card ${isCardLoad ? 'd-none' : ''}`} aria-hidden="true">
+                //         {/* <img src="..." class="card-img-top" alt="..."/> */}
+                //         <img src='/placeholder.jpg' className='card-img-top'></img>
+                //         <div class="card-body">
+                //             <h5 aria-hidden="true" class="card-title placeholder-glow">
+                //                 <span class="placeholder bg-secondary col-6"></span>
+                //             </h5>
+                //         </div>
+                //     </div>
+
+                // </div>
+
+                <MovieCard element={element} index={index}/>
             )
         })
     }
-    
+
     return (
         <div className="mt-4 container">
             <div className="g-4 row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 {moviesData.error && <div>{moviesData.error}</div>}
-                {moviesData.isPending && <Spinner/>}
+                {moviesData.isPending && <Spinner />}
                 {moviesData.data && createGrid()}
             </div>
         </div>

@@ -38,10 +38,11 @@ export default function Menu() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link position-relative" to="/cart">Cart
-    {state.cart.length ?
+                            {/*TODO: fix in small screen*/}
+                            <Link className="me-4 nav-link position-relative" to="/cart">Cart
+                                {state.cart.length ?
                                 <span
-                                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    className="position-absolute top-20 start-100 translate-middle badge rounded-pill bg-danger">
                                         {state.cart.length}
                                     <span className="visually-hidden">unread messages</span>
                                 </span> : ""}
