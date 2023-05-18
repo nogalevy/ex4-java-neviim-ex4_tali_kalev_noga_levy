@@ -40,6 +40,7 @@ export default function SearchInput({inputType, clearGenres}) {
             <input className="form-control" type="search" placeholder={`Search by ${inputType}`}
                    aria-label="Search"
                    required value={submitInput} onChange={(e) => setSubmitInput(e.target.value)}/>
+            {/*TODO: NOGA: TALI: i dont kknow how to say it in inglesh*/}
             <i className="fa fa-search"></i>
         </form>
         </div>

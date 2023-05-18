@@ -21,6 +21,7 @@ const AddToCart = ({itemData, index}) => {
     }
 
     return (
+        //TODO: maybe add to css file
         <div style={{zIndex: 2}} className="bottom-0 end-0 position-absolute card-footer">
             <button onClick={addToCart} className="btn text-light">
                 <PlusCircleFill size={25}/>

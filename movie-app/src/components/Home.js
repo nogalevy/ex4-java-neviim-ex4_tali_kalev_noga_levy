@@ -10,11 +10,9 @@ const Home = () => {
         if (moviesData.data.length === 0){
             return (<div>Sorry, no search results.</div>)
         }
-        return moviesData.data.length > 0 && moviesData.data.map((element, index) => {
-            return (
-                <MovieCard element={element} index={index}/>
-            )
-        })
+        return moviesData.data.length > 0 && moviesData.data.map((element, index) =>
+                <MovieCard key={element.id} element={element} index={index}/>
+        )
     }
 
     return (
