@@ -4,41 +4,14 @@ import { useMoviesContext } from "../contexts/MoviesContext";
 
 const Home = () => {
     const { moviesData } = useMoviesContext();
-    // const [isCardLoad, setIsCardLoad] = useState(false)
-
 
     const createGrid = () => {
         console.log("here", moviesData.data)
+        if (moviesData.data.length === 0){
+            return (<div>Sorry, no search results.</div>)
+        }
         return moviesData.data.length > 0 && moviesData.data.map((element, index) => {
-            // let img = element.poster_path || element.backdrop_path;
             return (
-                //NOGA: move to new component
-                // <div className="col" key={element.id}>
-
-                //     <div className={`card ${!isCardLoad ? 'd-none' : ''}`}>
-                //         <div className="position-relative ">
-                //             <img onLoad={() => { setIsCardLoad(true); console.log("yes?") }} src={`https://image.tmdb.org/t/p/w500${img}`}
-                //                 className="card-img-top" alt={element.name} />
-                //             <AddToCart itemData={moviesData.data[index]} index={index} />
-                //         </div>
-
-                //         <div className="card-body">
-                //             <p className="card-title text-dark">{element.name || element.title || "unknown name"} </p>
-                //         </div>
-                //     </div>
-
-                //     <div class={`card ${isCardLoad ? 'd-none' : ''}`} aria-hidden="true">
-                //         {/* <img src="..." class="card-img-top" alt="..."/> */}
-                //         <img src='/placeholder.jpg' className='card-img-top'></img>
-                //         <div class="card-body">
-                //             <h5 aria-hidden="true" class="card-title placeholder-glow">
-                //                 <span class="placeholder bg-secondary col-6"></span>
-                //             </h5>
-                //         </div>
-                //     </div>
-
-                // </div>
-
                 <MovieCard element={element} index={index}/>
             )
         })
