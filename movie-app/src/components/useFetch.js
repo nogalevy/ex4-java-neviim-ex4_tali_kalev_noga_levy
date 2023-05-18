@@ -15,8 +15,9 @@ export default function useFetch(url){
         const fetchData = async () =>  {
             try{
                 console.log("INFETCH", url)
+                //Tali: the spaces in the url does not affect get at all we can remove replace function if you want
                 // const res = await axios(`${DOMAIN}/search/multi?query=${query}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`);
-                const res = await axios(DOMAIN + url + `&api_key=` + API_KEY);
+                const res = await axios(DOMAIN + url.replace(/ /g,'%20') + `&api_key=` + API_KEY);
 
                 //tali: wouldnt let me access results in home and genre doesnt have results, different structure
                 const dataToReturn = res.data.results ? res.data.results : res.data;

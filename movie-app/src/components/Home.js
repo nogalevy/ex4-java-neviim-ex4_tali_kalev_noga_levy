@@ -1,13 +1,11 @@
 import Spinner from './Spinner';
 import MovieCard from './MovieCard';
 import { useMoviesContext } from "../contexts/MoviesContext";
-import { useCart } from "../contexts/CartContext";
-import axios from "axios";
-import { useState } from 'react';
 
 const Home = () => {
     const { moviesData } = useMoviesContext();
     // const [isCardLoad, setIsCardLoad] = useState(false)
+
 
     const createGrid = () => {
         console.log("here", moviesData.data)
