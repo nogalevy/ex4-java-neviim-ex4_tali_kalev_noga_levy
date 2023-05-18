@@ -5,7 +5,7 @@ import useFetch from "./useFetch";
 
 const TRENDING_PAGE = '/trending/all/week?&language=en-US';
 // const TRENDING_PAGE ='/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=99'
-export default function SearchInput({inputType}){
+export default function SearchInput({inputType, clearGenres}){
     const [url, setUrl] = useState(TRENDING_PAGE)
     const [submitInput, setSubmitInput] = useState('');
     const { error, isPending, data } = useFetch(url);
@@ -28,6 +28,7 @@ export default function SearchInput({inputType}){
         }
         setUrl(u);
         setSubmitInput('')
+        clearGenres()
     }
 
     return(

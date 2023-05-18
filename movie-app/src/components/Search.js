@@ -1,25 +1,33 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import SearchInput from "./SearchInput";
 import {InputTypes} from "../consts/consts";
+import GenreSearch from "./GenreSearch";
 
-
-export default function Search() {
+export default function Search({clearGenres, state, dispatch}) {
     const [inputType, setInputType] = useState(InputTypes.TITLE);
-    // const [submitInput, setSubmitInput] = useState('');
 
-
-    const handleToggle = () =>{
+    const handleToggle = () => {
         const newType = inputType === InputTypes.TITLE ? InputTypes.YEAR : InputTypes.TITLE;
-        // setSubmitInput('')
         setInputType(newType)
     }
 
-     return (
-         <div className="d-flex">
-             <div className="form-check form-switch">
-                 <input className="form-check-input" type="checkbox" onChange={handleToggle} id="flexSwitchCheckDefault"/>
-             </div>
-             <SearchInput inputType={inputType} /*submitInput={submitInput} setSubmitInput={setSubmitInput()}*//>
-         </div>
-     );
+    return (
+
+        <div className="d-flex">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li>
+                    <GenreSearch state={state} dispatch={dispatch}/>
+                </li>
+                <li>
+                    <div className="form-check form-switch">
+                        <input className="form-check-input" type="checkbox" onChange={handleToggle}
+                               id="flexSwitchCheckDefault"/>
+                    </div>
+                </li>
+                <li>
+                    <SearchInput inputType={inputType} clearGenres={clearGenres}/>
+                </li>
+            </ul>
+        </div>
+    );
 }
