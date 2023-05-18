@@ -30,6 +30,10 @@
     background-color:#eeeeee69;
 }
 
+.toggle-button{
+    padding: 14px 10px;
+    /*vertical-align: middle;*/
+}
 /*.form-control:focus{*/
 /*    background-color: #eeeeee69;*/
 /*    box-shadow: none;*/

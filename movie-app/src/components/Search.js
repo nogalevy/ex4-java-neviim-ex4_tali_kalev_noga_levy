@@ -19,7 +19,7 @@ export default function Search({clearGenres, state, dispatch}) {
                     <GenreSearch state={state} dispatch={dispatch}/>
                 </li>
                 <li>
-                    <div className="form-check form-switch">
+                    <div className="form-check form-switch toggle-button">
                         <input className="form-check-input" type="checkbox" onChange={handleToggle}
                                id="flexSwitchCheckDefault"/>
                     </div>

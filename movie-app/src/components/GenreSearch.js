@@ -1,6 +1,7 @@
 import useFetch from "./useFetch";
 import {useEffect, useState} from "react";
 import {useMoviesContext} from "../contexts/MoviesContext";
+import {useNavigate} from "react-router-dom";
 
 const GENRE_LIST_URL = '/genre/movie/list?language=en'
 export default function GenreSearch({state, dispatch}){
@@ -9,6 +10,7 @@ export default function GenreSearch({state, dispatch}){
     const {setMoviesData} = useMoviesContext()
     const [gu, setGu] = useState(null)
     const { error, isPending, data } = useFetch(gu);
+    const navigate = useNavigate()
 
     useEffect(()=>{
         if (state.genres.length > 0){
@@ -23,6 +25,7 @@ export default function GenreSearch({state, dispatch}){
             //tali: this makes it so that if there is one left checked and you uncheck it it does nothing
             let genres = state.genres.join('%2C')
             let u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}`
+            navigate('/')
             setGu(u)
         }
     }, [state.genres]);
