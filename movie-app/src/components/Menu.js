@@ -2,17 +2,16 @@ import {Link} from 'react-router-dom';
 import {Outlet} from "react-router";
 import Search from "./Search";
 import {useCart} from "../contexts/CartContext";   
-import GenreSearch from "./GenreSearch";
 import {useEffect, useReducer} from "react";
 import axios from "axios";
-import {clear} from "@testing-library/user-event/dist/clear";
 import genreReducer from "./genreReducer";
 import useFetch from "./useFetch";
 import {useMoviesContext} from "../contexts/MoviesContext";
+import {TRENDING_PAGE} from "../consts/consts";
 
 //todo this is in two places, move to consts, want to debate with you where we should call this trending page on the first time,
 //current on load search sets trending page as default and genre page sets null and only does something with data if genres checked > 0
-const TRENDING_PAGE = '/trending/all/week?&language=en-US';
+// const TRENDING_PAGE = '/trending/all/week?&language=en-US';
 
 export default function Menu() {
     // const {state} = useCart()
