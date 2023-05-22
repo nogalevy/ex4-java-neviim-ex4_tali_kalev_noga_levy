@@ -1,27 +1,13 @@
-import {useEffect, useReducer, useState} from "react";
-import {InputTypes, TRENDING_PAGE} from "../consts/consts";
-import {useMoviesContext} from "../contexts/MoviesContext";
-import useFetch from "./useFetch";
-import { useNavigate  } from "react-router-dom";
+import {useReducer, useState} from "react";
+import {InputTypes} from "../consts/consts";
 import historyReducer from "../reducers/historyReducer"
 
-
-// const TRENDING_PAGE = '/trending/all/week?&language=en-US';
-// const TRENDING_PAGE ='/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=99'
-export default function SearchInput({inputType, dispatch}) {
-    const [url, setUrl] = useState(TRENDING_PAGE)
+export default function SearchInput({inputType, dispatch, setUrl}) {
     const [submitInput, setSubmitInput] = useState('');
-    const {error, isPending, data} = useFetch(url);
-    const {setMoviesData} = useMoviesContext()
-    const navigate = useNavigate ();
     const [historyState, historyDispatch] = useReducer(historyReducer, {history : []});
     const [showDropdown, setShowDropdown] = useState(false)
 
     //validate by input
-
-    useEffect(() => {
-        setMoviesData({error, isPending, data})
-    }, [error, isPending, data])
 
     const handleURL = () => {
         let u;
@@ -35,7 +21,7 @@ export default function SearchInput({inputType, dispatch}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/'); //if not on home page -> navigates to home
+        // navigate('/'); //if not on home page -> navigates to home
         handleURL();
         historyDispatch({ type: 'add', payload: submitInput });
         setSubmitInput('')
