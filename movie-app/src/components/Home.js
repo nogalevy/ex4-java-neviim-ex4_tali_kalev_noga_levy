@@ -7,10 +7,10 @@ const Home = () => {
 
     const createGrid = () => {
         console.log("here", moviesData.data)
-        if (moviesData.data.length === 0){
+        if (!moviesData.data || !moviesData.data.results || moviesData.data.results.length === 0) {
             return (<div>Sorry, no search results.</div>)
         }
-        return moviesData.data.length > 0 && moviesData.data.map((element, index) =>
+        return moviesData.data.results.length > 0 && moviesData.data.results.map((element, index) =>
                 <MovieCard key={element.id} element={element} index={index}/>
         )
     }
@@ -20,7 +20,7 @@ const Home = () => {
             <div className="g-4 row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 {moviesData.error && <div>{moviesData.error}</div>}
                 {moviesData.isPending && <Spinner />}
-                {moviesData.data && createGrid()}
+                {createGrid()}
             </div>
         </div>
     );
