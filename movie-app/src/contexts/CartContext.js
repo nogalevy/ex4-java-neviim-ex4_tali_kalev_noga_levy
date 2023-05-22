@@ -7,6 +7,7 @@ const CartContext = React.createContext();
 //     ADD_NEW : 'addNew',
 //     DELETE : 'delete'
 // }
+
 /**
  * A reducer that handles the count state
  * @param state
@@ -19,12 +20,12 @@ function cartReducer(state = {cart: []}, action) {
             return {cart : action.payload}
         }
         case 'delete': {
-            return {cart: state.cart.filter((elem) => elem.id !== action.payload.id)};
+            let temp = state.cart;
+            delete temp[action.payload.id];
+            return {cart: temp};
         }
         case 'add': {
-            //check if the new item not exist in state
-            // console.log("cart", state.cart)
-            return { cart: [...state.cart, action.payload] };
+            return { cart: {...state.cart, [action.payload.id]: action.payload }};
         }
         default: {
             throw new Error(`Unhandled action type: ${action.type}`)

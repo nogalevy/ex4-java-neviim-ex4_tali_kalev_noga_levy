@@ -21,7 +21,8 @@ export default function Menu() {
         async function getCart(){
             try{
                 let res = await axios('/api/cart');
-                dispatch({type :'init', payload: Object.values(res.data)})
+                // dispatch({type :'init', payload: Object.values(res.data)})
+                dispatch({type :'init', payload: res.data})
             }
             catch (e) {
             }
@@ -57,10 +58,10 @@ export default function Menu() {
                         <li className="nav-item">
                             {/*TODO: fix in small screen*/}
                             <Link className="me-4 nav-link position-relative" to="/cart">Cart
-                                {state.cart.length ?
+                                {Object.keys(state.cart).length ?
                                 <span
                                     className="position-absolute top-20 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {state.cart.length}
+                                        {Object.keys(state.cart).length}
                                     <span className="visually-hidden">unread messages</span>
                                 </span> : ""}
                             </Link>
