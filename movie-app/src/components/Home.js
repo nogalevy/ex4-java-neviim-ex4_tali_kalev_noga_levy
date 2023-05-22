@@ -26,7 +26,7 @@ const Home = () => {
     );
 }
 
-export default Home; //Tali: make sure uniform
+export default Home; //TODO: make sure uniform
 
 // NOGA: example for movie object data:
 // [

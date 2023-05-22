@@ -1,8 +1,8 @@
 import { PlusCircleFill } from "react-bootstrap-icons";
 import axios from "axios";
 import {useCart} from "../contexts/CartContext";
+import {PRICE} from "../consts/consts";
 
-const PRICE = "3.99"; //TODO: move
 
 const AddToCart = ({itemData, index}) => {
     const {state, dispatch} = useCart();
