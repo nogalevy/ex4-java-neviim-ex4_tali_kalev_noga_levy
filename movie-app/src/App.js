@@ -9,6 +9,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './stylesheets/colors.css';
 import { MoviesProvider } from "./contexts/MoviesContext";
 import {CartProvider} from "./contexts/CartContext";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
     return (
@@ -28,6 +30,7 @@ const App = () => {
                     </BrowserRouter>
                 </MoviesProvider>
             </CartProvider>
+            <ToastContainer/>
         </div>
     );
 };

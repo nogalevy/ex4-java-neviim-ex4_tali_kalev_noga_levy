@@ -27,6 +27,9 @@ function cartReducer(state = {cart: []}, action) {
         case 'add': {
             return { cart: {...state.cart, [action.payload.id]: action.payload }};
         }
+        case 'clear': {
+            return { cart: []};
+        }
         default: {
             throw new Error(`Unhandled action type: ${action.type}`)
         }
