@@ -4,10 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
+import jakarta.validation.constraints.Email; // FIX!!!!
+import jakarta.validation.constraints.NotEmpty; // FIX!!!!
+import jakarta.validation.constraints.PositiveOrZero; // FIX!!!
 
 /**
  * a purchase is a record of a user buying a product. You should not need to edit this file
