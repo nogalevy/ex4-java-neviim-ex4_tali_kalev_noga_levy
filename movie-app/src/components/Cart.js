@@ -9,7 +9,8 @@ export default function Cart(props) {
     const {state} = useCart();
 
     const createList = () => {
-        return state && state.cart && state.cart.map((element) => {
+        if( !state || !state.cart ) return;
+        return Object.values(state.cart).map((element) => {
             return (
                 <CartItemCard key={element.id} element={element}/>
             )

@@ -8,8 +8,9 @@ const AddToCart = ({itemData, index}) => {
     const {state, dispatch} = useCart();
 
     const addToCart = async() =>{
-        let inCart = state.cart.findIndex((e)=> e.id === itemData.id);
-        if(state.cart.length !== 0 && inCart > -1) return;
+        let inCart = !!state.cart[itemData.id];
+        if(state.cart.length !== 0 && inCart) return;
+
         try{
             let res = await axios.post('/api/cart', {...itemData, price: PRICE});
             console.log(res);
