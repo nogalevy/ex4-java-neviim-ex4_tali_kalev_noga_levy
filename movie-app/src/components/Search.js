@@ -3,7 +3,7 @@ import SearchInput from "./SearchInput";
 import {InputTypes} from "../consts/consts";
 import GenreSearch from "./GenreSearch";
 
-export default function Search({clearGenres, state, dispatch}) {
+export default function Search({state, dispatch}) {
     const [inputType, setInputType] = useState(InputTypes.TITLE);
 
     const handleToggle = () => {
@@ -25,7 +25,7 @@ export default function Search({clearGenres, state, dispatch}) {
                     </div>
                 </li>
                 <li>
-                    <SearchInput inputType={inputType} clearGenres={clearGenres}/>
+                    <SearchInput inputType={inputType} dispatch={dispatch}/>
                 </li>
             </ul>
         </div>

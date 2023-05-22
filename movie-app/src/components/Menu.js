@@ -34,13 +34,8 @@ export default function Menu() {
     },[])
 
     const handleHomeClick = () => {
-        clearGenres()
-        setMoviesData({error, isPending, data}) //always trending page
-    }
-
-    const clearGenres = () => {
-        console.log("clearing genres...")
         genreDispatch({ type: 'clear'});
+        setMoviesData({error, isPending, data}) //always trending page
     }
 
     return (
@@ -70,7 +65,7 @@ export default function Menu() {
                         </li>
                         {/*<GenreSearch/>*/}
                     </ul>
-                    <Search clearGenres={clearGenres} state={genreState} dispatch={genreDispatch}/>
+                    <Search state={genreState} dispatch={genreDispatch}/>
 
                 </div>
             </div>
