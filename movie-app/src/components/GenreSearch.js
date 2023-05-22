@@ -1,30 +1,29 @@
 import useFetch from "./useFetch";
 import {useEffect} from "react";
-import {GENRE_LIST} from "../consts/consts";
+import {GENRE_LIST, Action} from "../consts/consts";
 
-export default function GenreSearch({state, dispatch, setUrl}){
+export default function GenreSearch({genreState, genreDispatch, setUrl}){
     //AND between genres, %2C, OR between genres %7C
     const { data:genreData } = useFetch(GENRE_LIST);
 
     useEffect(() => {
-        console.log('Selected genres:', state.genres);
-        ///discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=16%2C18'
-        if (state.genres.length > 0){
+        console.log('Selected genres:', genreState.list);
+        if (genreState.list.length > 0){
             //tali: this makes it so that if there is one left checked and you uncheck it it does nothing
-            let genres = state.genres.join(',')
+            let genres = genreState.list.join(',')
             let u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}`
             setUrl(u)
         }
-    }, [state.genres]);
+    }, [genreState.list]);
 
     const handleChange = (event) => {
         const genreId = event.currentTarget.id;
         if (event.target.checked) {
             console.log('Adding genre:', genreId);
-            dispatch({ type: 'add', payload: genreId });
+            genreDispatch({ type: Action.ADD, payload: genreId });
         } else {
             console.log('Removing genre:', genreId);
-            dispatch({ type: 'remove', payload: genreId });
+            genreDispatch({ type: Action.DELETE, payload: genreId });
         }
     };
 
@@ -38,7 +37,7 @@ export default function GenreSearch({state, dispatch, setUrl}){
                     <a className="dropdown-item" href="#">
                         <div className="form-check">
                             <input className="form-check-input" onChange={handleChange} type="checkbox"
-                                   checked={state.genres.includes(genre.id.toString())} value="" id={genre.id}/>
+                                   checked={genreState.list.includes(genre.id.toString())} value="" id={genre.id}/>
                             <label className="form-check-label" htmlFor={genre.id}>{genre.name}</label>
                         </div>
                     </a>

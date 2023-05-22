@@ -1,10 +1,10 @@
 import {useReducer, useState} from "react";
-import {InputTypes} from "../consts/consts";
-import historyReducer from "../reducers/historyReducer"
+import {InputTypes, Action} from "../consts/consts";
+import listReducer from "../reducers/listReducer";
 
-export default function SearchInput({inputType, dispatch, setUrl}) {
+export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const [submitInput, setSubmitInput] = useState('');
-    const [historyState, historyDispatch] = useReducer(historyReducer, {history : []});
+    const [historyState, historyDispatch] = useReducer(listReducer, {list : []});
     const [showDropdown, setShowDropdown] = useState(false)
 
     //validate by input
@@ -21,13 +21,12 @@ export default function SearchInput({inputType, dispatch, setUrl}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // navigate('/'); //if not on home page -> navigates to home
         handleURL();
-        historyDispatch({ type: 'add', payload: submitInput });
+        historyDispatch({ type: Action.ADD, payload: submitInput });
         setSubmitInput('')
-        dispatch({ type: 'clear'});
+        genreDispatch({ type: Action.CLEAR});
         setShowDropdown(false)
-        console.log("history:", historyState.history)
+        console.log("history:", historyState.list)
     }
 
     const handleClick = () => {
@@ -49,7 +48,7 @@ export default function SearchInput({inputType, dispatch, setUrl}) {
         //         )
         //     })}
 
-        return historyState.history.map((item, index) => {
+        return historyState.list.map((item, index) => {
             return (
                 <li>
                     <a className="dropdown-item" onClick={(e)=>{setSubmitInput(item); handleURL()}} href="#">
