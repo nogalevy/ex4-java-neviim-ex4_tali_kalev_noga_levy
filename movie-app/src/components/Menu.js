@@ -4,7 +4,7 @@ import Search from "./Search";
 import {useCart} from "../contexts/CartContext";   
 import {useEffect, useReducer} from "react";
 import axios from "axios";
-import genreReducer from "./genreReducer";
+import genreReducer from "../reducers/genreReducer";
 import useFetch from "./useFetch";
 import {useMoviesContext} from "../contexts/MoviesContext";
 import {TRENDING_PAGE} from "../consts/consts";

@@ -23,7 +23,7 @@ export default function GenreSearch({state, dispatch}){
         ///discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=16%2C18'
         if (state.genres.length > 0){
             //tali: this makes it so that if there is one left checked and you uncheck it it does nothing
-            let genres = state.genres.join('%2C')
+            let genres = state.genres.join(',')
             let u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}`
             navigate('/')
             setGu(u)

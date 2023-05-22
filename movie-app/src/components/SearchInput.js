@@ -3,7 +3,7 @@ import {InputTypes, TRENDING_PAGE} from "../consts/consts";
 import {useMoviesContext} from "../contexts/MoviesContext";
 import useFetch from "./useFetch";
 import { useNavigate  } from "react-router-dom";
-import historyReducer from "./historyReducer"
+import historyReducer from "../reducers/historyReducer"
 
 
 // const TRENDING_PAGE = '/trending/all/week?&language=en-US';
@@ -28,7 +28,7 @@ export default function SearchInput({inputType, clearGenres}) {
         if (inputType === InputTypes.TITLE) {
             u = `/search/multi?query=${submitInput}&include_adult=false&language=en-US&page=1`
         } else if (inputType === InputTypes.YEAR) {
-            u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=${submitInput}&sort_by=primary_release_date.desc`
+            u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=${submitInput}&sort_by=popularity.desc`
         }
         setUrl(u);
     }
@@ -85,10 +85,12 @@ export default function SearchInput({inputType, clearGenres}) {
     return (
         <form  className="nav-item dropdown" role="search" onSubmit={handleSubmit}>
         {/*<li className="nav-item dropdown">*/}
-            <input type="text" className="text-dark nav-link dropdown-toggle"
+            <input type="search" className="text-dark nav-link dropdown-toggle form-control"
                    // role="button"
                    data-bs-toggle="dropdown"
                    aria-expanded="false"
+                   placeholder={`Search by ${inputType}`}
+                   required
                    value={submitInput} onChange={(e) => setSubmitInput(e.target.value)}
             >
             </input>
