@@ -4,20 +4,17 @@ import Search from "./Search";
 import {useCart} from "../contexts/CartContext";   
 import {useEffect, useReducer, useState} from "react";
 import axios from "axios";
-import genreReducer from "../reducers/genreReducer";
 import useFetch from "./useFetch";
 import {useMoviesContext} from "../contexts/MoviesContext";
-import {TRENDING_PAGE} from "../consts/consts";
+import {Action, TRENDING_PAGE} from "../consts/consts";
+import listReducer from "../reducers/listReducer";
 
 export default function Menu() {
-    // const {state} = useCart()
     const [url, setUrl] = useState(TRENDING_PAGE)
     const { error, isPending, data } = useFetch(url);
-    const [genreState, genreDispatch] = useReducer(genreReducer, { genres: [] });
+    const [genreState, genreDispatch] = useReducer(listReducer, { list: [] });
     const {setMoviesData} = useMoviesContext()
     const navigate = useNavigate ();
-
-
     const {state, dispatch} = useCart();
 
     useEffect(()=>{
@@ -39,7 +36,7 @@ export default function Menu() {
     }, [error, isPending, data])
 
     const handleHomeClick = () => {
-        genreDispatch({ type: 'clear'});
+        genreDispatch({ type: Action.CLEAR});
         setUrl(TRENDING_PAGE)
         // setMoviesData({error, isPending, data}) //always trending page
     }
@@ -69,9 +66,8 @@ export default function Menu() {
                                 </span> : ""}
                             </Link>
                         </li>
-                        {/*<GenreSearch/>*/}
                     </ul>
-                    <Search state={genreState} dispatch={genreDispatch} setUrl={setUrl}/>
+                    <Search genreState={genreState} genreDispatch={genreDispatch} setUrl={setUrl}/>
 
                 </div>
             </div>

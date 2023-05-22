@@ -3,7 +3,7 @@ import SearchInput from "./SearchInput";
 import {InputTypes} from "../consts/consts";
 import GenreSearch from "./GenreSearch";
 
-export default function Search({state, dispatch, setUrl}) {
+export default function Search({genreState, genreDispatch, setUrl}) {
     const [inputType, setInputType] = useState(InputTypes.TITLE);
 
     const handleToggle = () => {
@@ -12,11 +12,10 @@ export default function Search({state, dispatch, setUrl}) {
     }
 
     return (
-
         <div className="d-flex">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li>
-                    <GenreSearch state={state} dispatch={dispatch} setUrl={setUrl}/>
+                    <GenreSearch genreState={genreState} genreDispatch={genreDispatch} setUrl={setUrl}/>
                 </li>
                 <li>
                     <div className="form-check form-switch toggle-button">
@@ -25,7 +24,7 @@ export default function Search({state, dispatch, setUrl}) {
                     </div>
                 </li>
                 <li>
-                    <SearchInput inputType={inputType} dispatch={dispatch} setUrl={setUrl}/>
+                    <SearchInput inputType={inputType} genreDispatch={genreDispatch} setUrl={setUrl}/>
                 </li>
             </ul>
         </div>
