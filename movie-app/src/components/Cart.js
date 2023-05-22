@@ -18,13 +18,28 @@ export default function Cart(props) {
     }
 
     return (
-        <>
-            <h3>cart</h3>
-            <div className="m-auto">
-                {createList()}
+        <div className="container">
+
+            <div className="d-flex flex-column align-items-center justify-content-center">
+                <h3 className="">cart</h3>
+                <div className="">
+                {Object.keys(state.cart).length ?
+                    <div>
+                        <div className="">
+                            {createList()}
+                        </div>
+                        <Link className="btn btn-primary mb-3" to="/checkout">checkout</Link>
+                    </div>
+                :
+                    <div>
+                        <p>your cart is empty please buy some stuff</p>
+                        <Link className="btn btn-primary mb-3" to="/">start shopping</Link>
+                    </div>
+
+                }
+                </div>
             </div>
-            <Link className="btn btn-primary mb-3" to="/checkout">checkout</Link>
-        </>
+        </div>
 
     );
 }
