@@ -69,8 +69,8 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     }
 
     return (
-        <form  className="nav-item dropdown" role="search" onSubmit={handleSubmit}>
-            <input type="search" className="text-dark nav-link dropdown-toggle form-control"
+        <form className="nav-item dropdown" role="search" onSubmit={handleSubmit}>
+            <input type="search" className="text-dark dropdown-toggle form-control rounded-5"
                    data-bs-toggle="dropdown"
                    aria-expanded="false"
                    placeholder={`Search by ${inputType}`}

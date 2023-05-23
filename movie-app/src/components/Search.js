@@ -13,8 +13,8 @@ export default function Search({genreState, genreDispatch, setUrl}) {
 
     return (
         <div className="d-flex">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li>
+            <ul className="navbar-nav me-auto mb-lg-0">
+                <li className="m-auto">
                     <GenreSearch genreState={genreState} genreDispatch={genreDispatch} setUrl={setUrl}/>
                 </li>
                 <li>

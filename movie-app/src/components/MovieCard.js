@@ -1,7 +1,8 @@
 import AddToCart from "./AddToCart";
 import {useEffect, useState} from 'react';
 import {useCart} from "../contexts/CartContext";
-
+import '../stylesheets/colors.css'
+import {PlusSquareFill} from "react-bootstrap-icons";
 
 const MovieCard = ({ element , index}) => {
     const [isCardLoad, setIsCardLoad] = useState(false)
@@ -13,9 +14,10 @@ const MovieCard = ({ element , index}) => {
     //NOGA: ??
     useEffect(()=>{
         const img = element.poster_path || element.backdrop_path;
+        if(img)  setImgSrc(`https://image.tmdb.org/t/p/w500${img}`);
+        else setImgSrc('/noimage1.png'); //TODO: add to const
         const title = element.name || element.title || "unknown name";
         setImgName(title);
-        setImgSrc(`https://image.tmdb.org/t/p/w500${img}`);
 
         isInCart();
     },[])
@@ -30,18 +32,22 @@ const MovieCard = ({ element , index}) => {
 
         <div className="col" key={element.id}>
             {/*card:*/}
-            <div className={`movie-card-con card ${!isCardLoad ? 'd-none' : ''}`}>
-                <div className="position-relative ">
-                    <img onLoad={() => { setIsCardLoad(true);}} src={imgSrc}
-                        className="card-img-top" alt={element.name} />
-                    {
-                    <AddToCart inCart={inCart} setInCart={setInCart} itemData={element} index={index} />
-                    }
-                </div>
+            <div className={`movie-card-con card position-relative ${!isCardLoad ? 'd-none' : ''}`}>
+                <div className="card-con">
 
-                <div className="card-body">
-                    <p className="card-title text-dark">{imgName} </p>
+                    <div className="position-relative ">
+                        <img onLoad={() => { setIsCardLoad(true);}} src={imgSrc}
+                            className="card-img-top" alt={element.name} />
+                        {/* NOGA: old :*/}
+                        {/*<AddToCart inCart={inCart} setInCart={setInCart} itemData={element} index={index} />*/}
+                    </div>
+
+                    <div className="card-body">
+                        <p className="card-title text-dark">{imgName} </p>
+                    </div>
                 </div>
+                {/*NOGA: new :*/}
+                <AddToCart inCart={inCart} setInCart={setInCart} itemData={element} index={index} />
             </div>
 
             {/*placeholder:*/}

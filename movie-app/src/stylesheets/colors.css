@@ -17,11 +17,38 @@
     border: none !important;
 }
 
-.movie-card-con:hover{
-    opacity: 70%;
+/*.movie-card-con:hover{*/
+/*    opacity: 70%;*/
+/*}*/
+.ggg{
+    background-color: #BB86FC;
 }
 
+.add {
+    width:100%;
+    height:100%;
+    /*margin:5%;*/
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1;
+    background:rgba(0,0,0,0.5);
+    border: #282c34 2px solid;
+}
 
+.add{
+    display:none;
+}
+
+.card-con .movie-card-con {
+    text-align:center;
+    position:relative;
+    top:50%;
+}
+
+.movie-card-con:hover .add{
+    display:block;
+}
 /*------------------*/
 /*todo: move*/
 

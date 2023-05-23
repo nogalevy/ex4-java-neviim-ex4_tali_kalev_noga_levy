@@ -55,7 +55,7 @@ export default function Menu() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav me-auto mb-lg-0">
                         {/*<li className="nav-item">*/}
                         {/*    /!*TODO: fix in small screen*!/*/}
                         {/*    <Link className="me-4 nav-link position-relative" to="/cart">Cart*/}

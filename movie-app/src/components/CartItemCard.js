@@ -9,9 +9,11 @@ export default function CartItemCard({element}){
     //NOGA: ??
     useEffect(()=>{
         const img = element.poster_path || element.backdrop_path;
+        if(img)  setImgSrc(`https://image.tmdb.org/t/p/w500${img}`);
+        else setImgSrc('/noimage1.png'); //TODO: add to const
         const title = element.name || element.title || "unknown name";
         setImgName(title);
-        setImgSrc(`https://image.tmdb.org/t/p/w500${img}`);
+
     },[])
 
     return (
@@ -25,7 +27,9 @@ export default function CartItemCard({element}){
                         <h5 className="card-title">{imgName}</h5>
                         <p className="card-text">{element.price}$</p>
                     </div>
-                    <DeleteCartItem id={element.id}/>
+                    <div className="card-footer bg-transparent border-success">
+                        <DeleteCartItem id={element.id}/>
+                    </div>
                 </div>
             </div>
         </div >

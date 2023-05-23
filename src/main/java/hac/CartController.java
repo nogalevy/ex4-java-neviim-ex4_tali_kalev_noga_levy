@@ -25,6 +25,9 @@ public class CartController {
     @PostMapping("/cart")
     public ResponseEntity<CartItem> addNewItem(@RequestBody final CartItem cartItem) {
         //add to session
+        //TODO: check if exist- try this:
+        // if(!shoppingCart.getShoppingCart().containsKey(cartItem.getId())) //return error
+
         shoppingCart.add(cartItem);
         System.out.println("added "+ cartItem.getTitle());
         return ResponseEntity.ok(cartItem) ;

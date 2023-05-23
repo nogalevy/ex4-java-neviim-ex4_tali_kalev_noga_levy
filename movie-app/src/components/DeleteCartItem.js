@@ -18,10 +18,8 @@ export default function DeleteCartItem({id}){
     }
 
     return (
-        <div className="card-footer bg-transparent border-success">
-            <button onClick={()=>deleteItem(id)}>
-                <Trash3Fill/>
-            </button>
-        </div>
+        <button onClick={()=>deleteItem(id)} className="btn btn-light">
+            <Trash3Fill/>
+        </button>
     )
 }
