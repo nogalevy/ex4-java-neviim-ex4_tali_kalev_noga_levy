@@ -37,4 +37,9 @@ public class CartController {
     }
 
     //TODO: delete all
+    @DeleteMapping("/cart")
+    public ResponseEntity<String> deleteItemById() {
+        shoppingCart.clear();
+        return ResponseEntity.ok("success");
+    }
 }

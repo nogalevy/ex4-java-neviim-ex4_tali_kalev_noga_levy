@@ -11,6 +11,18 @@
     background-color: var(--secondary-green);
 }
 
+/*------------------*/
+.movie-card-con{
+    /*NOGA:*/
+    border: none !important;
+}
+
+.movie-card-con:hover{
+    opacity: 70%;
+}
+
+
+/*------------------*/
 /*todo: move*/
 
 .input-box{

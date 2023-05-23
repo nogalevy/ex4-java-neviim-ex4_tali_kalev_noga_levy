@@ -1,13 +1,14 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {Outlet} from "react-router";
 import Search from "./Search";
-import {useCart} from "../contexts/CartContext";   
+import {useCart} from "../contexts/CartContext";
 import {useEffect, useReducer, useState} from "react";
 import axios from "axios";
 import useFetch from "./useFetch";
 import {useMoviesContext} from "../contexts/MoviesContext";
 import {Action, TRENDING_PAGE} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
+import CartNavItem from "./CartNavItem";
 
 export default function Menu() {
     const [url, setUrl] = useState(TRENDING_PAGE)
@@ -15,7 +16,7 @@ export default function Menu() {
     const [genreState, genreDispatch] = useReducer(listReducer, { list: [] });
     const {setMoviesData} = useMoviesContext()
     const navigate = useNavigate ();
-    const {state, dispatch} = useCart();
+    const {dispatch} = useCart();
 
     useEffect(()=>{
         async function getCart(){
@@ -55,17 +56,18 @@ export default function Menu() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            {/*TODO: fix in small screen*/}
-                            <Link className="me-4 nav-link position-relative" to="/cart">Cart
-                                {Object.keys(state.cart).length ?
-                                <span
-                                    className="position-absolute top-20 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {Object.keys(state.cart).length}
-                                    <span className="visually-hidden">unread messages</span>
-                                </span> : ""}
-                            </Link>
-                        </li>
+                        {/*<li className="nav-item">*/}
+                        {/*    /!*TODO: fix in small screen*!/*/}
+                        {/*    <Link className="me-4 nav-link position-relative" to="/cart">Cart*/}
+                        {/*        {Object.keys(state.cart).length ?*/}
+                        {/*        <span*/}
+                        {/*            className="position-absolute top-20 start-100 translate-middle badge rounded-pill bg-danger">*/}
+                        {/*                {Object.keys(state.cart).length}*/}
+                        {/*            <span className="visually-hidden">unread messages</span>*/}
+                        {/*        </span> : ""}*/}
+                        {/*    </Link>*/}
+                        {/*</li>*/}
+                        <CartNavItem/>
                     </ul>
                     <Search genreState={genreState} genreDispatch={genreDispatch} setUrl={setUrl}/>
 

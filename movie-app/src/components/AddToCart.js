@@ -1,10 +1,10 @@
-import { PlusCircleFill } from "react-bootstrap-icons";
+import { PlusCircleFill, CheckCircleFill } from "react-bootstrap-icons";
 import axios from "axios";
 import {useCart} from "../contexts/CartContext";
 import {PRICE} from "../consts/consts";
 
 
-const AddToCart = ({itemData, index}) => {
+const AddToCart = ({inCart, setInCart, itemData, index}) => {
     const {state, dispatch} = useCart();
 
     const addToCart = async() =>{
@@ -15,6 +15,7 @@ const AddToCart = ({itemData, index}) => {
             let res = await axios.post('/api/cart', {...itemData, price: PRICE});
             console.log(res);
             dispatch({type: 'add' , payload: res.data });
+            setInCart(true);
         }
         catch (err){
             console.log("err", err)
@@ -25,7 +26,7 @@ const AddToCart = ({itemData, index}) => {
         //TODO: maybe add to css file
         <div style={{zIndex: 2}} className="bottom-0 end-0 position-absolute card-footer">
             <button onClick={addToCart} className="btn text-light">
-                <PlusCircleFill size={25}/>
+                { inCart ? <CheckCircleFill size={25}/> : <PlusCircleFill size={25}/> }
             </button>
         </div>
     );

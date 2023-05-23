@@ -30,4 +30,8 @@ public class ShoppingCart {
     public void deleteById (Integer id){
         shoppingCart.remove(id);
     }
+
+    public void clear (){
+        shoppingCart.clear();
+    }
 }
