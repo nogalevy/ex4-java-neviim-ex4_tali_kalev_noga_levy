@@ -47,7 +47,7 @@ export default function GenreSearch({genreState, genreDispatch, setUrl}){
     }
 
     return(
-        <li className="nav-item dropdown">
+        <div className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="\" role="button" data-bs-toggle="dropdown"
                aria-expanded="false">
                 Choose Genre
@@ -55,6 +55,6 @@ export default function GenreSearch({genreState, genreDispatch, setUrl}){
             <ul className="dropdown-menu">
                 {getGenres()}
             </ul>
-        </li>
+        </div>
     );
 }
