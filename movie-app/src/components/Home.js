@@ -20,7 +20,7 @@ const Home = () => {
             <div className="g-4 row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 {moviesData.error && <div>{moviesData.error}</div>}
                 {moviesData.isPending && <Spinner />}
-                {createGrid()}
+                {!moviesData.isPending && createGrid()}
             </div>
         </div>
     );

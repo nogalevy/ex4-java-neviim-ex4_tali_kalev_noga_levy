@@ -4,11 +4,19 @@ import listReducer from "../reducers/listReducer";
 
 export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const [submitValue, setSubmitValue] = useState('');
+    const [s, setS] = useState('')
     const [historyState, historyDispatch] = useReducer(listReducer, {list : []});
 
     useEffect(() => {
-        setSubmitValue('');
+        setS('');
     },[inputType]);
+
+    useEffect(()=>{
+        if (submitValue){
+            handleSearch()
+            addToHistory();
+        }
+    }, [submitValue])
 
     const handleURL = () => {
         let u;
@@ -26,13 +34,17 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
         }
     }
 
+    const handleSearch = () => {
+        console.log("handling search...", submitValue)
+        handleURL();
+        genreDispatch({ type: Action.CLEAR});
+        setS('')
+        console.log("search history", historyState)
+
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleURL();
-        addToHistory();
-        setSubmitValue('')
-        genreDispatch({ type: Action.CLEAR});
-        console.log("history:", historyState.list)
+        setSubmitValue(s)
     }
     const renderDropdown = () => {
         const reversedList = historyState.list.slice().reverse();
@@ -40,18 +52,8 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
         return reversedList.map((item, index) => {
             return (
                 <li key={index}>
-                    <a className="dropdown-item" onClick={(e) => { setSubmitValue(item); handleURL(); }} href="#">
-                        <div className="form-check">
-                            <input
-                                className="form-check-input"
-                                onChange={(e) => { console.log(e.target); }}
-                                type="checkbox"
-                                checked={false}
-                                value=""
-                                id={item}
-                            />
-                            <label className="form-check-label" htmlFor={item}>{item}</label>
-                        </div>
+                    <a className="dropdown-item" onClick={(e) => { setSubmitValue(item)} } href="#">
+                        {item}
                     </a>
                 </li>
             );
@@ -61,7 +63,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
 
     const handleInputChange = (e) => {
         if(inputType === InputTypes.YEAR && containsNonNumericCharacter(e.target.value)) return
-        setSubmitValue(e.target.value)
+        setS(e.target.value)
     }
 
     function containsNonNumericCharacter(str) {
@@ -75,7 +77,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
                    aria-expanded="false"
                    placeholder={`Search by ${inputType}`}
                    required
-                   value={submitValue} onChange={(e) => {handleInputChange(e)}}
+                   value={s} onChange={(e) => {handleInputChange(e)}}
             >
             </input>
             <ul className="dropdown-menu">
