@@ -2,6 +2,9 @@ import {Link} from 'react-router-dom';
 import {useCart} from "../contexts/CartContext";
 import axios from "axios";
 import CartItemCard from "./CartItemCard";
+import React, { useState, useEffect } from "react";
+import { ArrowBarDown } from "react-bootstrap-icons"
+import "../stylesheets/colors.css"
 
 export default function Cart() {
     const {state, dispatch} = useCart();
@@ -29,7 +32,8 @@ export default function Cart() {
 
             <div className="d-flex flex-column align-items-center justify-content-center">
                 <h3 className="">cart</h3>
-                {Object.keys(state.cart).length ?
+                {/*<ScrollToTop/>*/}
+                    {Object.keys(state.cart).length ?
                     <div>
                         <div className="">
                             {createList()}
@@ -52,3 +56,44 @@ export default function Cart() {
     );
 }
 
+//NOGA: try to do scroll btn 
+
+
+// import "./index.css";
+//
+// const ScrollToTop = () => {
+//     const [showTopBtn, setShowTopBtn] = useState(false);
+//     useEffect(() => {
+//         window.addEventListener('scroll', toggleVisible);
+//     }, []);
+//
+//     const toggleVisible = () => {
+//         const scrolled = document.documentElement.scrollTop;
+//
+//         if (scrolled > 0){
+//             setShowTopBtn(false)
+//         }
+//         else if (scrolled <= 20){
+//             setShowTopBtn(true)
+//         }
+//     };
+//     const goToTop = () => {
+//         window.scrollTo({
+//             top: document.documentElement.scrollHeight,
+//             behavior: "smooth",
+//         });
+//     };
+//     return (
+//         <div className="top-to-btm">
+//
+//             {showTopBtn && (
+//                 <ArrowBarDown
+//                     color="white"
+//                     className="icon-position icon-style"
+//                     onClick={goToTop}
+//                 />
+//             )}
+//         </div>
+//     );
+// };
+//
