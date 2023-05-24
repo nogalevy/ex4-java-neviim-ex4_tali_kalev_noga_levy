@@ -22,13 +22,17 @@ export default function CartItemCard({element}){
                 <div className="col-md-4">
                     <img src={imgSrc} className="img-fluid rounded-start" alt={element.name} />
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-8 d-flex align-content-between flex-column">
                     <div className="card-body">
                         <h5 className="card-title">{imgName}</h5>
-                        <p className="card-text">{element.price}$</p>
                     </div>
-                    <div className="card-footer bg-transparent border-success">
-                        <DeleteCartItem id={element.id}/>
+                    <div className="card-footer bg-transparent align-self-end w-100">
+                        <div className="d-flex justify-content-between">
+                       <p className="card-text my-auto">{element.price}$</p>
+                       <div>
+                            <DeleteCartItem id={element.id}/>
+                       </div>
+                        </div>
                     </div>
                 </div>
             </div>

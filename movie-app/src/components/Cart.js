@@ -5,6 +5,7 @@ import CartItemCard from "./CartItemCard";
 import React, { useState, useEffect } from "react";
 import { ArrowBarDown } from "react-bootstrap-icons"
 import "../stylesheets/colors.css"
+import {PRICE} from "../consts/consts";
 
 export default function Cart() {
     const {state, dispatch} = useCart();
@@ -31,11 +32,13 @@ export default function Cart() {
         <div className="container">
 
             <div className="d-flex flex-column align-items-center justify-content-center">
-                <h3 className="">cart</h3>
+                <h2 >Cart</h2>
                 {/*<ScrollToTop/>*/}
                     {Object.keys(state.cart).length ?
                     <div>
-                        <div className="">
+                        <h3>Total items: {Object.keys(state.cart).length}</h3>
+                        <h3>Total price: {Object.keys(state.cart).length * PRICE}</h3>
+                        <div>
                             {createList()}
                         </div>
 
@@ -56,7 +59,7 @@ export default function Cart() {
     );
 }
 
-//NOGA: try to do scroll btn 
+//NOGA: try to do scroll btn
 
 
 // import "./index.css";
