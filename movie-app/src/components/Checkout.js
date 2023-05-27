@@ -3,13 +3,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toastify from "../consts/toastify";
 import {useCart} from "../contexts/CartContext";
+import {PRICE} from "../consts/consts";
+import '../stylesheets/colors.css';
 
 export default function Cart() {
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const {dispatch} = useCart();
+    const {state, dispatch} = useCart();
 
 
     const handleSubmit = async (e) => {
@@ -18,6 +20,7 @@ export default function Cart() {
             firstName,
             lastName,
             email,
+            payment: Object.keys(state.cart).length * PRICE
         };
 
         try {
@@ -33,8 +36,9 @@ export default function Cart() {
     };
 
     return (
-        <div className="container">
-            <h3>Checkout</h3>
+        <div className="container d-flex flex-column align-items-center justify-content-center">
+            <h2>Checkout</h2>
+            <h4 className="mb-4">Purchase Total: {Object.keys(state.cart).length * PRICE}</h4>
             <form className="m-auto form-floating text-dark" onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="form-floating mb-3 col">
@@ -71,7 +75,7 @@ export default function Cart() {
                     />
                     <label htmlFor="floatingEmail">Email</label>
                 </div>
-                <div className="m-auto">
+                <div className="col-12 mt-3">
                     <button type="submit" className="btn btn-primary">
                         Submit
                     </button>
