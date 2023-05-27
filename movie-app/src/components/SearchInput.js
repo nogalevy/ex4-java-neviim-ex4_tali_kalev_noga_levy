@@ -57,10 +57,10 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     }
 
     /**
-     * add item searched to history if not already exists
+     * add item searched to history if not already exists and not of type year input
      */
     const addToHistory = () => {
-        if (!historyState.list.includes(submitValue)){
+        if (!historyState.list.includes(submitValue) && inputType !== InputTypes.YEAR){
             historyDispatch({ type: Action.ADD, payload: submitValue });
         }
     }
