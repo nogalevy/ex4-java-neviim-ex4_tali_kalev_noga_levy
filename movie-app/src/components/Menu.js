@@ -9,9 +9,10 @@ import {useMoviesContext} from "../contexts/MoviesContext";
 import {Action, TRENDING_PAGE} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
 import CartNavItem from "./CartNavItem";
+import createMovieApiUrl from "./movieApiUrl";
 
 export default function Menu() {
-    const [url, setUrl] = useState(TRENDING_PAGE)
+    const [url, setUrl] = useState(createMovieApiUrl(TRENDING_PAGE))
     const { error, isPending, data } = useFetch(url);
     const [genreState, genreDispatch] = useReducer(listReducer, { list: [] });
     const {setMoviesData} = useMoviesContext()
@@ -38,7 +39,7 @@ export default function Menu() {
 
     const handleHomeClick = () => {
         genreDispatch({ type: Action.CLEAR});
-        setUrl(TRENDING_PAGE)
+        setUrl(createMovieApiUrl(TRENDING_PAGE))
         // setMoviesData({error, isPending, data}) //always trending page
     }
 

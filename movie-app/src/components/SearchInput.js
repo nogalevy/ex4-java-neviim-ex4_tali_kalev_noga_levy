@@ -1,6 +1,7 @@
 import {useEffect, useReducer, useState} from "react";
 import {InputTypes, Action} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
+import createMovieApiUrl from "./movieApiUrl";
 
 export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const [submitValue, setSubmitValue] = useState('');
@@ -35,7 +36,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
         } else if (inputType === InputTypes.YEAR) {
             u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=${submitValue}&sort_by=popularity.desc`
         }
-        setUrl(u);
+        setUrl(createMovieApiUrl(u));
     }
 
     const addToHistory = () => {

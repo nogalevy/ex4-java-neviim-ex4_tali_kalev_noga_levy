@@ -1,17 +1,18 @@
 import useFetch from "./useFetch";
 import {useEffect} from "react";
 import {GENRE_LIST, Action, TRENDING_PAGE} from "../consts/consts";
+import createMovieApiUrl from "./movieApiUrl"
 
 export default function GenreSearch({genreState, genreDispatch, setUrl}){
     //AND between genres, %2C, OR between genres %7C
-    const { data:genreData } = useFetch(GENRE_LIST);
+    const { data:genreData } = useFetch(createMovieApiUrl(GENRE_LIST));
 
     useEffect(() => {
         console.log("in use effect")
         if (genreState.list.length > 0){
             let genres = genreState.list.join(',')
             let u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}`
-            setUrl(u)
+            setUrl(createMovieApiUrl(u))
         }
     }, [genreState.list]);
 
@@ -23,7 +24,7 @@ export default function GenreSearch({genreState, genreDispatch, setUrl}){
             genreDispatch({ type: Action.DELETE, payload: genreId });
             //when one genre left is unchecked, return to trending page - checks === 1 since dispatch is async
             if(genreState.list.length === 1){
-                setUrl(TRENDING_PAGE)
+                setUrl(createMovieApiUrl(TRENDING_PAGE))
             }
         }
     };
