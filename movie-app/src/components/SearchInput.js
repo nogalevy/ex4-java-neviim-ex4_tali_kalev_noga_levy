@@ -56,21 +56,18 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
         e.preventDefault();
         setSubmitValue(inputText)
     }
-
-    const handleRemoveItem = () => {
-        console.log('delete')
-    }
+    
     const renderDropdown = () => {
         const reversedList = historyState.list.slice().reverse();
 
         return (
                 reversedList.map((item, index) => {
                 return (
-                    <li key={index}>
-                        <a className="dropdown-item" onClick={(e) => { setSubmitValue(item)} } href="#">
+                    <li className="row" key={index}>
+                        <a className="dropdown-item col" onClick={(e) => { setSubmitValue(item)} } href="#">
                             {item}
                         </a>
-                        {/*<button className="remove-button" onClick={() => handleRemoveItem(index)}>X</button>*/}
+                        <a className="remove-button col" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>X</a>
                     </li>
                 );
                 })
