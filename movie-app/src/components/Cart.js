@@ -28,23 +28,23 @@ export default function Cart() {
         }
     }
 
+    //tali: tried to add stick-top to stick purchase buttons to the right side - didnt work
     return (
         <div className="container">
 
-            <div className="d-flex flex-column align-items-center justify-content-center">
-                <h2 >Cart</h2>
+            <div className="d-flex flex-column justify-content-center">
+                <h2 >Your Cart</h2>
                 {/*<ScrollToTop/>*/}
                     {Object.keys(state.cart).length ?
-                    <div>
-                        <h3>Total items: {Object.keys(state.cart).length}</h3>
-                        <h3>Total price: {Object.keys(state.cart).length * PRICE}</h3>
-                        <div>
+                    <div className="row">
+                        <div className="col-md-8 ">
                             {createList()}
                         </div>
-
-                        <div className="row justify-content-between">
-                            <Link className="btn btn-primary mb-3 col-8" to="/checkout">checkout</Link>
-                            <button onClick={emptyCart} className="btn btn-danger mb-3 col-3">clear</button>
+                        <div className="col-md-4 sticky-md-top">
+                            <h3>Total items: {Object.keys(state.cart).length}</h3>
+                            <h3>Total price: {Object.keys(state.cart).length * PRICE}</h3>
+                            <Link className="btn btn-primary me-2 mb-3 col-6" to="/checkout">Purchase</Link>
+                            <button onClick={emptyCart} className="btn btn-danger mb-3 col-4">Clear All</button>
                         </div>
                     </div>
                 :

@@ -122,9 +122,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     function containsNonNumericCharacter(str) {
         return /\D/.test(str);
     }
-    //Tali: if i try to add showing dropdown as condition I get one of two issues: error - Cannot read properties of null (reading 'classList') or dropdown will not appear again after clearing history
-    // {`dropdown-menu ${showDropdown ? "show" : ""}`}
-    // {`nav-item ${historyState.list &&  historyState.list.length === 0 ? "" : "dropdown"}`}
+
     return (
         <form className="nav-item dropdown" role="search" onSubmit={handleSubmit}>
             <input
@@ -139,7 +137,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
                     handleInputChange(e);
                 }}
             />
-                <ul className="dropdown-menu dropdown-menu-dark">
+                <ul className={`dropdown-menu dropdown-menu-dark ${historyState.list && historyState.list.length > 0 ? "visible" : "invisible"}`}>
                     {renderDropdown()}
                     <li>
                         <hr className="dropdown-divider" />
