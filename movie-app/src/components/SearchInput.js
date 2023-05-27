@@ -2,6 +2,7 @@ import {useEffect, useReducer, useState} from "react";
 import {InputTypes, Action} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
 import createMovieApiUrl from "./movieApiUrl";
+import {X, XLg, XSquare, XSquareFill, XCircle} from "react-bootstrap-icons";
 
 /**
  *
@@ -15,7 +16,6 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const [submitValue, setSubmitValue] = useState('');
     const [inputText, setInputText] = useState('')
     const [historyState, historyDispatch] = useReducer(listReducer, {list : []});
-    // const [showDropdown, setShowDropdown] = useState(false)
 
     /**
      * on change of toggle, text in search bar is cleared
@@ -33,15 +33,6 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
             addToHistory();
         }
     }, [submitValue])
-
-    // useEffect(()=>{
-    //     if(historyState.list.length > 0){
-    //         setShowDropdown(true)
-    //     }
-    //     else{
-    //         setShowDropdown(false)
-    //     }
-    // }, [historyState.list])
 
     /**
      * build url to fetch based on input type and value
@@ -93,11 +84,13 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
         return (
                 reversedList.map((item, index) => {
                 return (
-                    <li className="row" key={index}>
-                        <a className="dropdown-item col" onClick={(e) => { setSubmitValue(item)} } href="#">
+                    <li className="container d-flex justify-content-between" key={index}>
+                        <a className="dropdown-item" onClick={(e) => { setSubmitValue(item)} } href="#">
                             {item}
                         </a>
-                        <a className="remove-button col" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>X</a>
+                        <a className="mt-1" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>
+                            <XSquare/>
+                        </a>
                     </li>
                 );
                 })
