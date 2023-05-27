@@ -4,11 +4,12 @@ import listReducer from "../reducers/listReducer";
 
 export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const [submitValue, setSubmitValue] = useState('');
-    const [s, setS] = useState('')
+    const [inputText, setInputText] = useState('')
     const [historyState, historyDispatch] = useReducer(listReducer, {list : []});
+    // const [showDropdown, setShowDropdown] = useState(false)
 
     useEffect(() => {
-        setS('');
+        setInputText('');
     },[inputType]);
 
     useEffect(()=>{
@@ -17,6 +18,15 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
             addToHistory();
         }
     }, [submitValue])
+
+    // useEffect(()=>{
+    //     if(historyState.list.length > 0){
+    //         setShowDropdown(true)
+    //     }
+    //     else{
+    //         setShowDropdown(false)
+    //     }
+    // }, [historyState.list])
 
     const handleURL = () => {
         let u;
@@ -38,51 +48,77 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
         console.log("handling search...", submitValue)
         handleURL();
         genreDispatch({ type: Action.CLEAR});
-        setS('')
+        setInputText('')
         console.log("search history", historyState)
 
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmitValue(s)
+        setSubmitValue(inputText)
+    }
+
+    const handleRemoveItem = () => {
+        console.log('delete')
     }
     const renderDropdown = () => {
         const reversedList = historyState.list.slice().reverse();
 
-        return reversedList.map((item, index) => {
-            return (
-                <li key={index}>
-                    <a className="dropdown-item" onClick={(e) => { setSubmitValue(item)} } href="#">
-                        {item}
-                    </a>
-                </li>
-            );
-        });
+        return (
+                reversedList.map((item, index) => {
+                return (
+                    <li key={index}>
+                        <a className="dropdown-item" onClick={(e) => { setSubmitValue(item)} } href="#">
+                            {item}
+                        </a>
+                        {/*<button className="remove-button" onClick={() => handleRemoveItem(index)}>X</button>*/}
+                    </li>
+                );
+                })
+        );
     };
 
 
     const handleInputChange = (e) => {
         if(inputType === InputTypes.YEAR && containsNonNumericCharacter(e.target.value)) return
-        setS(e.target.value)
+        setInputText(e.target.value)
     }
 
     function containsNonNumericCharacter(str) {
         return /\D/.test(str);
     }
-
+    //Tali: if i try to add showing dropdown as condition I get one of two issues: error - Cannot read properties of null (reading 'classList') or dropdown will not appear again after clearing history
+    // {`dropdown-menu ${showDropdown ? "show" : ""}`}
+    // {`nav-item ${historyState.list &&  historyState.list.length === 0 ? "" : "dropdown"}`}
     return (
         <form className="nav-item dropdown" role="search" onSubmit={handleSubmit}>
-            <input type="search" className="text-dark dropdown-toggle form-control rounded-5"
-                   data-bs-toggle="dropdown"
-                   aria-expanded="false"
-                   placeholder={`Search by ${inputType}`}
-                   required
-                   value={s} onChange={(e) => {handleInputChange(e)}}
-            >
-            </input>
-            <ul className="dropdown-menu">
-                {renderDropdown()}
-            </ul>
+            <input
+                type="search"
+                className="text-dark dropdown-toggle form-control rounded-5"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                placeholder={`Search by ${inputType}`}
+                required
+                value={inputText}
+                onChange={(e) => {
+                    handleInputChange(e);
+                }}
+            />
+                <ul className="dropdown-menu dropdown-menu-dark">
+                    {renderDropdown()}
+                    <li>
+                        <hr className="dropdown-divider" />
+                    </li>
+                    <li>
+                        <a
+                            className="dropdown-item"
+                            onClick={() => historyDispatch({ type: Action.CLEAR })}
+                            href="#"
+                        >
+                            Clear Search History
+                        </a>
+                    </li>
+                </ul>
         </form>
     );
+
 }
