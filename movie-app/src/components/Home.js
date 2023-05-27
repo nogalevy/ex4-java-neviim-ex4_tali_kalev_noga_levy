@@ -2,11 +2,20 @@ import Spinner from './Spinner';
 import MovieCard from './MovieCard';
 import { useMoviesContext } from "../contexts/MoviesContext";
 
-const Home = () => {
+/**
+ *
+ * @returns {JSX.Element} that displays all fetched movie content
+ * @constructor
+ */
+export default function Home(){
     const { moviesData } = useMoviesContext();
 
+    /**
+     * creates grid of movies with data, displays message if no results from fetch
+     * @returns {false|*|JSX.Element}
+     */
     const createGrid = () => {
-        console.log("here", moviesData.data)
+        console.log("here", moviesData.data) //TODO: REMOVE
         if (!moviesData.data || !moviesData.data.results || moviesData.data.results.length === 0) {
             return (<div>Sorry, no search results.</div>)
         }
@@ -26,7 +35,6 @@ const Home = () => {
     );
 }
 
-export default Home; //TODO: make sure uniform
 
 // NOGA: example for movie object data:
 // [

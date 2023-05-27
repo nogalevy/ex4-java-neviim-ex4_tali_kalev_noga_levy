@@ -11,6 +11,11 @@ import listReducer from "../reducers/listReducer";
 import CartNavItem from "./CartNavItem";
 import createMovieApiUrl from "./movieApiUrl";
 
+/**
+ *
+ * @returns {JSX.Element} that displays the navbar and all the components within
+ * @constructor
+ */
 export default function Menu() {
     const [url, setUrl] = useState(createMovieApiUrl(TRENDING_PAGE))
     const { error, isPending, data } = useFetch(url);
@@ -19,6 +24,9 @@ export default function Menu() {
     const navigate = useNavigate ();
     const {dispatch} = useCart();
 
+    /**
+     * on first load - inits cart data from api
+     */
     useEffect(()=>{
         async function getCart(){
             try{
@@ -32,15 +40,20 @@ export default function Menu() {
         getCart(); //NOGA: ?????????????????????????????????????????????????????
     },[])
 
+    /**
+     * on change of movie data fetched from movie api, sets context of movie data for display on home page
+     */
     useEffect(() => {
         navigate('/');
         setMoviesData({error, isPending, data})
     }, [error, isPending, data])
 
+    /**
+     * removes all chosen genres, fetches trending page
+     */
     const handleHomeClick = () => {
         genreDispatch({ type: Action.CLEAR});
         setUrl(createMovieApiUrl(TRENDING_PAGE))
-        // setMoviesData({error, isPending, data}) //always trending page
     }
 
     return (

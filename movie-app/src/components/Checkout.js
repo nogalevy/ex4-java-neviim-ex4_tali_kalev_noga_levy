@@ -3,10 +3,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toastify from "../consts/toastify";
 import {useCart} from "../contexts/CartContext";
-import {PRICE} from "../consts/consts";
+import {PRICE, PURCHASE_SUCCESS_MSG, PURCHASE_FAIL_MSG} from "../consts/consts";
 import '../stylesheets/colors.css';
 
-export default function Cart() {
+/**
+ *
+ * @returns {JSX.Element} displaying Checkout page
+ * @constructor
+ */
+export default function Checkout() {
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -14,6 +19,11 @@ export default function Cart() {
     const {state, dispatch} = useCart();
 
 
+    /**
+     *
+     * @param e event
+     * @returns {Promise<void>}
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
@@ -28,10 +38,10 @@ export default function Cart() {
             console.log(res);
             navigate("/");
             dispatch({type :'clear'})
-            toastify.successToast("Congrats! Purchase successful")
+            toastify.successToast(PURCHASE_SUCCESS_MSG)
         } catch (err) {
             console.log("Error:", err);
-            toastify.errorToast("Could not process purchase, try again later")
+            toastify.errorToast(PURCHASE_FAIL_MSG)
         }
     };
 
@@ -41,7 +51,7 @@ export default function Cart() {
             <h4 className="mb-4">Purchase Total: {Object.keys(state.cart).length * PRICE}</h4>
             <form className="m-auto form-floating text-dark" onSubmit={handleSubmit}>
                 <div className="row">
-                    <div className="form-floating mb-3 col">
+                    <div className="form-floating mb-3 col-sm">
                         <input
                             type="text"
                             className="form-control"
@@ -52,7 +62,7 @@ export default function Cart() {
                         />
                         <label htmlFor="floatingFirst">First Name</label>
                     </div>
-                    <div className="form-floating col">
+                    <div className="form-floating mb-3 col">
                         <input
                             type="text"
                             className="form-control"
@@ -64,7 +74,7 @@ export default function Cart() {
                         <label htmlFor="floatingLast">Last Name</label>
                     </div>
                 </div>
-                <div className="form-floating">
+                <div className="form-floating mb-3">
                     <input
                         type="email"
                         className="form-control"

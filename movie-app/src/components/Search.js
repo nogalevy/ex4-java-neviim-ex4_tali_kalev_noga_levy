@@ -3,9 +3,20 @@ import SearchInput from "./SearchInput";
 import {InputTypes} from "../consts/consts";
 import GenreSearch from "./GenreSearch";
 
+/**
+ *
+ * @param genreState state contains list of genres chosen from dropdown
+ * @param genreDispatch dispatch to change state of genres chosen
+ * @param setUrl string
+ * @returns {JSX.Element} elements of genre dropdown, toggle button for search input types, search input and search history
+ * @constructor
+ */
 export default function Search({genreState, genreDispatch, setUrl}) {
     const [inputType, setInputType] = useState(InputTypes.TITLE);
 
+    /**
+     * toggle through search type options - by title or by year
+     */
     const handleToggle = () => {
         const newType = inputType === InputTypes.TITLE ? InputTypes.YEAR : InputTypes.TITLE;
         setInputType(newType)

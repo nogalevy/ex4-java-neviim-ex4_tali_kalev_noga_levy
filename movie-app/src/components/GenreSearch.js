@@ -7,8 +7,10 @@ export default function GenreSearch({genreState, genreDispatch, setUrl}){
     //AND between genres, %2C, OR between genres %7C
     const { data:genreData } = useFetch(createMovieApiUrl(GENRE_LIST));
 
+    /**
+     * on change of list of genres chosen, builds url to fetch genres
+     */
     useEffect(() => {
-        console.log("in use effect")
         if (genreState.list.length > 0){
             let genres = genreState.list.join(',')
             let u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}`
@@ -16,6 +18,11 @@ export default function GenreSearch({genreState, genreDispatch, setUrl}){
         }
     }, [genreState.list]);
 
+    /**
+     *
+     * @param event of checked genres
+     * if genre is checked in list -> adds to chosen genre list, if unchecked, removes
+     */
     const handleChange = (event) => {
         const genreId = event.currentTarget.id;
         if (event.target.checked) {
@@ -29,6 +36,11 @@ export default function GenreSearch({genreState, genreDispatch, setUrl}){
         }
     };
 
+    /**
+     *
+     * @returns {*|null}
+     * builds list of genres to choose from in dropdown list form
+     */
     const getGenres = ()=>{
         if (!genreData || !genreData.genres) {
             return null;

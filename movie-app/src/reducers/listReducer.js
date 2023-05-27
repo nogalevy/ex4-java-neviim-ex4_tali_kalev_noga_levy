@@ -1,5 +1,11 @@
 import {Action} from "../consts/consts";
 
+/**
+ *
+ * @param state list of items
+ * @param action ADD, DELETE, or CLEAR
+ * @returns {{list: *}|{list: *[]}}
+ */
 export default function listReducer(state, action) {
     switch (action.type) {
         case Action.ADD: {
