@@ -89,7 +89,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
                             {item}
                         </a>
                         <a className="mt-1" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>
-                            <XSquare/>
+                            <XLg className="text-secondary"/>
                         </a>
                     </li>
                 );
