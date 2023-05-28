@@ -1,4 +1,4 @@
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {Outlet} from "react-router";
 import Search from "./Search";
 import {useCart} from "../contexts/CartContext";
@@ -23,7 +23,7 @@ export default function Menu() {
     const {setMoviesData} = useMoviesContext()
     const navigate = useNavigate ();
     const {dispatch} = useCart();
-
+    const location = useLocation();
     /**
      * on first load - inits cart data from api
      */
@@ -44,7 +44,7 @@ export default function Menu() {
      * on change of movie data fetched from movie api, sets context of movie data for display on home page
      */
     useEffect(() => {
-        navigate('/');
+        if(location.pathname === '/cart' || location.pathname === '/checkout') navigate('/'); //NOGA:
         setMoviesData({error, isPending, data})
     }, [error, isPending, data])
 
