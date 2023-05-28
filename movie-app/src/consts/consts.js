@@ -18,3 +18,4 @@ export const PRICE = "3.99";
 
 export const PURCHASE_SUCCESS_MSG = "Congrats! Purchase successful"
 export const PURCHASE_FAIL_MSG = "Could not process purchase, try again later"
+export const ADD_TO_CART_FAIL_MSG = "Could not add to cart, try again later"

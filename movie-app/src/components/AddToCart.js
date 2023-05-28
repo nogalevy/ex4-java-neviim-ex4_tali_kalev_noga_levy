@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useCart} from "../contexts/CartContext";
-import {PRICE} from "../consts/consts";
-import DeleteCartItem from "./DeleteCartItem";
+import {ADD_TO_CART_FAIL_MSG, PRICE} from "../consts/consts";
+import toastify from "../consts/toastify";
 
 
 const AddToCart = ({inCart, setInCart, itemData, index}) => {
@@ -18,20 +18,12 @@ const AddToCart = ({inCart, setInCart, itemData, index}) => {
             setInCart(true);
         }
         catch (err){
-            console.log("err", err)
+            toastify.errorToast(ADD_TO_CART_FAIL_MSG);
         }
     }
 
     return (
-        //NOGA: old :
         //TODO: maybe add to css file
-        // <div style={{zIndex: 2}} className="bottom-0 end-0 position-absolute card-footer border-0 bg-transparent">
-        //     <button onClick={addToCart} className="btn text-light ">
-        //         { inCart ? <CheckCircleFill size={25}/> : <PlusCircleFill size={25}/> }
-        //     </button>
-        // </div>
-        // NOGA: new :
-        <div className="add">
             <div className="h-100 row align-items-center justify-content-center ">
                 {
                     !inCart ?
@@ -41,14 +33,12 @@ const AddToCart = ({inCart, setInCart, itemData, index}) => {
                     :
                     //     NOGA:
                     <div className="d-flex justify-content-center">
-                        {/*<DeleteCartItem id={itemData.id}/>*/}
                         <div className="btn btn-success w-75">
                             added!
                         </div>
                     </div>
                 }
             </div>
-        </div>
     );
 };
 

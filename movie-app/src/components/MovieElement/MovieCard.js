@@ -1,13 +1,17 @@
-import AddToCart from "./AddToCart";
+import AddToCart from "../AddToCart";
 import {useEffect, useState} from 'react';
-import {useCart} from "../contexts/CartContext";
-import '../stylesheets/colors.css'
+import {useCart} from "../../contexts/CartContext";
+import '../../stylesheets/colors.css'
 import {PlusSquareFill} from "react-bootstrap-icons";
+import {ArrowsAngleExpand} from "react-bootstrap-icons"
+
+import MovieModal from "./MovieModal";
+import MovieCardPlaceholder from "./MovieCardPlaceholder";
 
 const MovieCard = ({ element , index}) => {
     const [isCardLoad, setIsCardLoad] = useState(false)
     const [imgSrc, setImgSrc] = useState(''); //NOGA:
-    const [imgName, setImgName] = useState(''); //NOGA:
+    const [title, setTitle] = useState(''); //NOGA:
     const [inCart, setInCart] = useState(false);
     const {state, dispatch} = useCart();
 
@@ -17,7 +21,7 @@ const MovieCard = ({ element , index}) => {
         if(img)  setImgSrc(`https://image.tmdb.org/t/p/w500${img}`);
         else setImgSrc('/noimage1.png'); //TODO: add to const
         const title = element.name || element.title || "unknown name";
-        setImgName(title);
+        setTitle(title);
 
         isInCart();
     },[])
@@ -34,32 +38,25 @@ const MovieCard = ({ element , index}) => {
             {/*card:*/}
             <div className={`movie-card-con card position-relative ${!isCardLoad ? 'd-none' : ''}`}>
                 <div className="card-con">
-
                     <div className="position-relative ">
                         <img onLoad={() => { setIsCardLoad(true);}} src={imgSrc}
                             className="card-img-top" alt={element.name} />
-                        {/* NOGA: old :*/}
-                        {/*<AddToCart inCart={inCart} setInCart={setInCart} itemData={element} index={index} />*/}
                     </div>
-
                     <div className="card-body">
-                        <p className="card-title text-dark">{imgName} </p>
+                        <p className="card-title text-dark">{title} </p>
                     </div>
                 </div>
-                {/*NOGA: new :*/}
-                <AddToCart inCart={inCart} setInCart={setInCart} itemData={element} index={index} />
-            </div>
+                <div className="add">
 
-            {/*placeholder:*/}
-            <div className={`movie-card-con card ${isCardLoad ? 'd-none' : ''}`} aria-hidden="true">
-                <img src='/placeholder.jpg' className='card-img-top' alt="placeholder"/>
-                <div className="card-body">
-                    <h5 aria-hidden="true" className="card-title placeholder-glow">
-                        <span className="placeholder bg-secondary col-6"></span>
-                    </h5>
+                <button type="button" className="btn text-light position-absolute end-0 m-2" data-bs-toggle="modal" data-bs-target={`#movie${element.id}`}>
+                    <ArrowsAngleExpand/>
+                </button>
+                <AddToCart inCart={inCart} setInCart={setInCart} itemData={element} index={index} />
                 </div>
             </div>
 
+            <MovieModal id={element.id} img={imgSrc} title={title} description={element.overview} />
+            <MovieCardPlaceholder isCardLoad={isCardLoad}/>
         </div>
     )
 }

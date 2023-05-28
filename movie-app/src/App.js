@@ -15,7 +15,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
     return (
         <div className="bg-dark text-light w-100 min-vh-100">
-            {/*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>*/}
             <CartProvider>
                 <MoviesProvider>
                     <BrowserRouter>
