@@ -41,8 +41,9 @@ export default function Cart() {
                             {createList()}
                         </div>
                         <div className="col-md-4 sticky-md-top">
+                            {/*NOGA: maybe add getTotalPrice() to reducer ? */}
                             <h3>Total items: {Object.keys(state.cart).length}</h3>
-                            <h3>Total price: {Object.keys(state.cart).length * PRICE}</h3>
+                            <h3>Total price: {(Object.keys(state.cart).length * PRICE).toFixed(2)}</h3>
                             <Link className="btn btn-primary me-2 mb-3 col-6" to="/checkout">Purchase</Link>
                             <button onClick={emptyCart} className="btn btn-danger mb-3 col-4">Clear All</button>
                         </div>

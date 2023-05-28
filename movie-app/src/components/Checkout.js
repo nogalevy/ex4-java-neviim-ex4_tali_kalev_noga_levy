@@ -54,7 +54,7 @@ export default function Checkout() {
     return (
         <div className="container d-flex flex-column align-items-center justify-content-center">
             <h2>Checkout</h2>
-            <h4 className="mb-4">Purchase Total: {Object.keys(state.cart).length * PRICE}</h4>
+            <h4 className="mb-4">Purchase Total: {(Object.keys(state.cart).length * PRICE).toFixed(2)}</h4>
             <form className="m-auto form-floating text-dark" onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="form-floating mb-3 col-sm">
