@@ -19,10 +19,10 @@ export default function CartItemCard({element}){
     return (
         <div key={element.id} className="card mb-3 text-bg-light" style={{maxWidth: "540px" }}>
             <div className="row g-0 ">
-                <div className="col-md-4">
+                <div className="col-md-4 col-sm-2 col-3">
                     <img src={imgSrc} className="img-fluid rounded-start" alt={element.name} />
                 </div>
-                <div className="col-md-8 d-flex align-content-between flex-column">
+                <div className="col-md-8 col-sm-10 col-9 d-flex align-content-between flex-column">
                     <div className="card-body">
                         <h5 className="card-title">{imgName}</h5>
                     </div>

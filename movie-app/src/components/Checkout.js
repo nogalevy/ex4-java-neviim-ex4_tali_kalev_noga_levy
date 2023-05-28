@@ -5,6 +5,7 @@ import toastify from "../consts/toastify";
 import {useCart} from "../contexts/CartContext";
 import {PRICE, PURCHASE_SUCCESS_MSG, PURCHASE_FAIL_MSG} from "../consts/consts";
 import '../stylesheets/colors.css';
+import Spinner from "./Spinner";
 
 /**
  *
@@ -16,6 +17,7 @@ export default function Checkout() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
+    const [isLoad, setIsLoad] = useState(false);
     const {state, dispatch} = useCart();
 
 
@@ -25,6 +27,7 @@ export default function Checkout() {
      * @returns {Promise<void>}
      */
     const handleSubmit = async (e) => {
+        if(isLoad) return;
         e.preventDefault();
         const data = {
             firstName,
@@ -32,7 +35,7 @@ export default function Checkout() {
             email,
             payment: Object.keys(state.cart).length * PRICE
         };
-
+        setIsLoad(true);
         try {
             let res = await axios.post("/api/purchases", data);
             console.log(res);
@@ -42,6 +45,9 @@ export default function Checkout() {
         } catch (err) {
             console.log("Error:", err);
             toastify.errorToast(PURCHASE_FAIL_MSG)
+        }
+        finally {
+            setIsLoad(false);
         }
     };
 
@@ -59,6 +65,7 @@ export default function Checkout() {
                             placeholder="First Name"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
+                            required
                         />
                         <label htmlFor="floatingFirst">First Name</label>
                     </div>
@@ -70,6 +77,7 @@ export default function Checkout() {
                             placeholder="Last Name"
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
+                            required
                         />
                         <label htmlFor="floatingLast">Last Name</label>
                     </div>
@@ -82,14 +90,15 @@ export default function Checkout() {
                         placeholder="name@gmail.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
                     />
                     <label htmlFor="floatingEmail">Email</label>
                 </div>
-                <div className="col-12 mt-3">
-                    <button type="submit" className="btn btn-primary">
-                        Submit
+                {/*<div className="col-12 mt-3">*/}
+                    <button type="submit" className="btn btn-primary col-12 mt-3">
+                        {!isLoad ? 'Submit' : <Spinner/>}
                     </button>
-                </div>
+                {/*</div>*/}
             </form>
         </div>
     );
