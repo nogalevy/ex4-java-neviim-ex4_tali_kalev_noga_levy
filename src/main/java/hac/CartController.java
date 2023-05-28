@@ -39,6 +39,7 @@ public class CartController {
 
     @DeleteMapping("/cart/{id}")
     public ResponseEntity<Integer> deleteItemById(@PathVariable Integer id) {
+        //NOGA: if id not in map throw error or do nothing?
         shoppingCart.deleteById(id);
         return ResponseEntity.ok(id);
     }
