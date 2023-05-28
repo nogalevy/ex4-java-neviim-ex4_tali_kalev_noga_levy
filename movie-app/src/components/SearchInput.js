@@ -2,7 +2,7 @@ import {useEffect, useReducer, useState} from "react";
 import {InputTypes, Action} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
 import createMovieApiUrl from "./movieApiUrl";
-import {X, XLg, XSquare, XSquareFill, XCircle} from "react-bootstrap-icons";
+import {XLg} from "react-bootstrap-icons";
 
 /**
  *

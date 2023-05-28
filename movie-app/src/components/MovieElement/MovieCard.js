@@ -1,22 +1,20 @@
 import AddToCart from "../AddToCart";
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useCart} from "../../contexts/CartContext";
 import '../../stylesheets/colors.css'
-import {PlusSquareFill} from "react-bootstrap-icons";
 import {ArrowsAngleExpand} from "react-bootstrap-icons"
-
 import MovieModal from "./MovieModal";
 import MovieCardPlaceholder from "./MovieCardPlaceholder";
+import useFirstMount from "../useFirstMount";
 
 const MovieCard = ({ element , index}) => {
     const [isCardLoad, setIsCardLoad] = useState(false)
     const [imgSrc, setImgSrc] = useState(''); //NOGA:
     const [title, setTitle] = useState(''); //NOGA:
     const [inCart, setInCart] = useState(false);
-    const {state, dispatch} = useCart();
+    const {state} = useCart();
 
-    //NOGA: ??
-    useEffect(()=>{
+    useFirstMount(function (){
         const img = element.poster_path || element.backdrop_path;
         if(img)  setImgSrc(`https://image.tmdb.org/t/p/w500${img}`);
         else setImgSrc('/noimage1.png'); //TODO: add to const
@@ -24,7 +22,17 @@ const MovieCard = ({ element , index}) => {
         setTitle(title);
 
         isInCart();
-    },[])
+    })
+    //NOGA: ??
+    // useEffect(()=>{
+    //     const img = element.poster_path || element.backdrop_path;
+    //     if(img)  setImgSrc(`https://image.tmdb.org/t/p/w500${img}`);
+    //     else setImgSrc('/noimage1.png'); //TODO: add to const
+    //     const title = element.name || element.title || "unknown name";
+    //     setTitle(title);
+    //
+    //     isInCart();
+    // },[])
 
     const isInCart = () => {
         if(state.cart && state.cart.hasOwnProperty(element.id)){

@@ -10,6 +10,7 @@ import {Action, TRENDING_PAGE} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
 import CartNavItem from "./CartNavItem";
 import createMovieApiUrl from "./movieApiUrl";
+import useFirstMount from "./useFirstMount";
 
 /**
  *
@@ -24,21 +25,32 @@ export default function Menu() {
     const navigate = useNavigate ();
     const {dispatch} = useCart();
     const location = useLocation();
+
+    useFirstMount(
+        async function() {
+            try {
+                let res = await axios('/api/cart');
+                // dispatch({type :'init', payload: Object.values(res.data)})
+                dispatch({type: 'init', payload: res.data})
+            } catch (e) {
+            }
+        }
+    )
     /**
      * on first load - inits cart data from api
      */
-    useEffect(()=>{
-        async function getCart(){
-            try{
-                let res = await axios('/api/cart');
-                // dispatch({type :'init', payload: Object.values(res.data)})
-                dispatch({type :'init', payload: res.data})
-            }
-            catch (e) {
-            }
-        }
-        getCart(); //NOGA: ?????????????????????????????????????????????????????
-    },[])
+    // useEffect(()=>{
+    //     async function getCart(){
+    //         try{
+    //             let res = await axios('/api/cart');
+    //             // dispatch({type :'init', payload: Object.values(res.data)})
+    //             dispatch({type :'init', payload: res.data})
+    //         }
+    //         catch (e) {
+    //         }
+    //     }
+    //     getCart(); //NOGA: ?????????????????????????????????????????????????????
+    // },[])
 
     /**
      * on change of movie data fetched from movie api, sets context of movie data for display on home page
@@ -70,17 +82,6 @@ export default function Menu() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-lg-0">
-                        {/*<li className="nav-item">*/}
-                        {/*    /!*TODO: fix in small screen*!/*/}
-                        {/*    <Link className="me-4 nav-link position-relative" to="/cart">Cart*/}
-                        {/*        {Object.keys(state.cart).length ?*/}
-                        {/*        <span*/}
-                        {/*            className="position-absolute top-20 start-100 translate-middle badge rounded-pill bg-danger">*/}
-                        {/*                {Object.keys(state.cart).length}*/}
-                        {/*            <span className="visually-hidden">unread messages</span>*/}
-                        {/*        </span> : ""}*/}
-                        {/*    </Link>*/}
-                        {/*</li>*/}
                         <CartNavItem/>
                     </ul>
                     <Search genreState={genreState} genreDispatch={genreDispatch} setUrl={setUrl}/>

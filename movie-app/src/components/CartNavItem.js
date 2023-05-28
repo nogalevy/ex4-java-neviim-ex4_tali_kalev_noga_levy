@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import {useCart} from "../contexts/CartContext";
-import {CartFill} from 'react-bootstrap-icons'
 
 export default function CartNavItem(){
     const {state} = useCart();

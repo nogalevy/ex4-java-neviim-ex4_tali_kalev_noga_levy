@@ -2,8 +2,7 @@ import {Link} from 'react-router-dom';
 import {useCart} from "../contexts/CartContext";
 import axios from "axios";
 import CartItemCard from "./CartItemCard";
-import React, { useState, useEffect } from "react";
-import { ArrowBarDown } from "react-bootstrap-icons"
+import React from "react";
 import "../stylesheets/colors.css"
 import {PRICE} from "../consts/consts";
 
@@ -21,10 +20,11 @@ export default function Cart() {
 
     const emptyCart = async ()=>{
         try {
-            let res = await axios.delete('/api/cart');
+            await axios.delete('/api/cart');
             dispatch({type: "clear"})
         }
         catch (e){
+            //TODO: ?
         }
     }
 

@@ -1,7 +1,6 @@
 import Spinner from './Spinner';
 import MovieCard from './MovieElement/MovieCard';
 import { useMoviesContext } from "../contexts/MoviesContext";
-import MovieModal from "./MovieElement/MovieModal";
 
 /**
  *
