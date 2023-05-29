@@ -39,13 +39,13 @@ export default function Cart() {
     return (
         <div className="container">
             <div className="d-flex flex-column justify-content-center">
-                <h2 className="pb-3">Your Cart : </h2>
+                <h2 className="pb-3">Your Cart </h2>
                     {Object.keys(state.cart).length ?
                     <div className="row">
                         <div className="col-md-8 ">
                             {createList()}
                         </div>
-                        <div className="sticky-obj col-md-4 sticky-md-top pt-md-5">
+                        <div className="sticky-obj col-md-4 sticky-md-top pt-md-5 height-fit-content">
                             <h3>Total items: {Object.keys(state.cart).length}</h3>
                             <h3>Total price: {(Object.keys(state.cart).length * PRICE).toFixed(2)}</h3>
                             <Link className="btn btn-primary me-2 mb-3 col-6" to="/checkout">Purchase</Link>
