@@ -32,3 +32,11 @@ export const getUrlSearchByQuery = (query="") => {
 export const getUrlDiscoverByYear = (year) => {
     return `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=${year}&sort_by=popularity.desc`;
 }
+
+/**
+ * gets genres and return the right path to api
+ * @param genres
+ * @returns url
+ */
+export const getUrlDiscoverByGenres = (genres) => {
+    return `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}`}
