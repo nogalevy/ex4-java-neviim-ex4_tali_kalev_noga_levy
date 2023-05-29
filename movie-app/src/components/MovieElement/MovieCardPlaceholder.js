@@ -1,5 +1,11 @@
 import React from "react";
 
+/**
+ * when image card is loaded display placeholder
+ * @param isCardLoad
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const MovieCardPlaceholder = ({isCardLoad}) => {
     return (
         <div className={`movie-card-con card ${isCardLoad ? 'd-none' : ''}`} aria-hidden="true">

@@ -6,6 +6,10 @@ import toastify from "../consts/toastify";
 const AddToCart = ({inCart, setInCart, itemData}) => {
     const {state, dispatch} = useCart();
 
+    /**
+     * add the current movie to cart in error display toast
+     * @returns {Promise<void>}
+     */
     const addToCart = async() =>{
         let inCart = !!state.cart[itemData.id];
         if(state.cart.length !== 0 && inCart) return;

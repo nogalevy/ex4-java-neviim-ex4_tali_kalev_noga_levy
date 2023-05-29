@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 
 /**
- *
  * @param url
  * @returns {{data: unknown, isPending: boolean, error: unknown}}
  */

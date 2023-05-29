@@ -1,5 +1,10 @@
 import {DEFAULT_IMG_SRC} from "./consts";
 
+/**
+ * @param element from api
+ * @returns {[string,(*|string)]}
+ * returns the src and title
+ */
 export const getImageTitleAndSrc = (element)=>{
     let src;
     const img = element.poster_path || element.backdrop_path;
@@ -10,10 +15,20 @@ export const getImageTitleAndSrc = (element)=>{
     return [src, title];
 }
 
+/**
+ * gets query and return the right path to api
+ * @param query string
+ * @returns url
+ */
 export const getUrlSearchByQuery = (query="") => {
     return `/search/multi?query=${query}&include_adult=false&language=en-US&page=1`;
 }
 
+/**
+ * gets year and returns the right path to api
+ * @param year
+ * @returns url
+ */
 export const getUrlDiscoverByYear = (year) => {
     return `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=${year}&sort_by=popularity.desc`;
 }

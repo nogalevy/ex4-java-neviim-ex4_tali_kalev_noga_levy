@@ -10,6 +10,7 @@ import MovieModal from "./MovieModal";
 import '../../stylesheets/movieCard.css'
 import {getImageTitleAndSrc} from "../../consts/utills";
 
+
 const MovieCard = ({ element , index}) => {
     const [isCardLoad, setIsCardLoad] = useState(false)
     const [imgSrc, setImgSrc] = useState(''); //NOGA:
@@ -17,6 +18,9 @@ const MovieCard = ({ element , index}) => {
     const [inCart, setInCart] = useState(false);
     const {state} = useCart();
 
+    /**
+     * first mount set image src and title and checks if in cart
+     */
     useFirstMount(function (){
         const [src, title] = getImageTitleAndSrc(element)
         setImgSrc(src);
@@ -25,6 +29,9 @@ const MovieCard = ({ element , index}) => {
         isInCart();
     })
 
+    /**
+     * checks if current movie is in cart
+     */
     const isInCart = () => {
         if(state.cart && state.cart.hasOwnProperty(element.id)){
             setInCart(true);

@@ -1,3 +1,12 @@
+/**
+ * movie card modal - shows the movie title and description (overview)
+ * @param id
+ * @param img
+ * @param title
+ * @param description
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const MovieModal = ({id, img, title, description}) => {
     return (
     <div className="modal fade" id={`movie${id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

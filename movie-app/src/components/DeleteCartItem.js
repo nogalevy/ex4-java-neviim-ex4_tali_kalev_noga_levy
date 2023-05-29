@@ -11,9 +11,13 @@ export default function DeleteCartItem({id}){
     const [isLoading, setIsLoading] = useState(false);
     const {dispatch} = useCart();
 
-    //TODO: move to usefetch
+    /**
+     * remove the items from list
+     * @param id id of the movie we want to remove
+     * @returns {Promise<void>}
+     */
     const deleteItem = async (id) =>{
-        if(isLoading)return;
+        if(isLoading) return;
         setIsLoading(true)
         try{
             const res = await axios.delete('/api/cart/' + id);

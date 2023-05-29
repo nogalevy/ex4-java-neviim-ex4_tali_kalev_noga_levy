@@ -14,6 +14,9 @@ export default function Cart() {
     const {state, dispatch} = useCart();
     const [isLoading, setIsLoading] = useState(false);
 
+    /**
+     * @returns list of cart items
+     */
     const createList = () => {
         if( !state || !state.cart ) return;
         return Object.values(state.cart).map((element) =>
@@ -21,6 +24,9 @@ export default function Cart() {
         );
     }
 
+    /**
+     * empty cart display toast on error
+     */
     const emptyCart = async ()=>{
         if(isLoading) return;
         setIsLoading(true);

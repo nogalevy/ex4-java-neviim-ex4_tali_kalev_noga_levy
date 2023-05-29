@@ -7,6 +7,9 @@ export default function CartItemCard({element}){
     const [imgSrc, setImgSrc] = useState('');
     const [imgName, setImgName] = useState('');
 
+    /**
+     * on first mount set the image src and title
+     */
     useFirstMount(function (){
         const [src, title] = getImageTitleAndSrc(element)
         setImgSrc(src);
