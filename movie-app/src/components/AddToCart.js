@@ -2,8 +2,10 @@ import axios from "axios";
 import {useCart} from "../contexts/CartContext";
 import {ADD_TO_CART_FAIL_MSG, PRICE, Action} from "../consts/consts";
 import toastify from "../utils/toastify";
+import {useState} from "react";
 
 const AddToCart = ({inCart, setInCart, itemData}) => {
+    const [isLoad, setIsLoad] = useState(false);
     const {state, dispatch} = useCart();
 
     /**
@@ -13,7 +15,8 @@ const AddToCart = ({inCart, setInCart, itemData}) => {
     const addToCart = async() =>{
         let inCart = !!state.cart[itemData.id];
         if(state.cart.length !== 0 && inCart) return;
-
+        if(isLoad) return;
+        setIsLoad(true);
         try{
             let res = await axios.post('/api/cart', {...itemData, price: PRICE});
             dispatch({type: Action.ADD , payload: res.data });
@@ -21,6 +24,9 @@ const AddToCart = ({inCart, setInCart, itemData}) => {
         }
         catch (err){
             toastify.errorToast(ADD_TO_CART_FAIL_MSG);
+        }
+        finally {
+            setIsLoad(false);
         }
     }
 
