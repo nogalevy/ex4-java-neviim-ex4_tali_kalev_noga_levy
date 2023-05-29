@@ -2,10 +2,13 @@ import useFetch from "./useFetch";
 import {useEffect} from "react";
 import {GENRE_LIST, Action, TRENDING_PAGE} from "../consts/consts";
 import createMovieApiUrl from "./movieApiUrl"
+import {useLocation, useNavigate} from 'react-router-dom';
 
 export default function GenreSearch({genreState, genreDispatch, setUrl}){
     const { data:genreData } = useFetch(createMovieApiUrl(GENRE_LIST)); //retrieves types of genres for dropdown
-
+    const location = useLocation()
+    const navigate = useNavigate ();
+    
     /**
      * on change of list of genres chosen, builds url to fetch genres
      */
@@ -14,6 +17,7 @@ export default function GenreSearch({genreState, genreDispatch, setUrl}){
             let genres = genreState.list.join(',') //logical AND
             let u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}`
             setUrl(createMovieApiUrl(u))
+            if (location.pathname !== '/') navigate('/')
         }
     }, [genreState.list]);
 
