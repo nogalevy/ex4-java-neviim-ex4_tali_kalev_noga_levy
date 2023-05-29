@@ -2,7 +2,7 @@ import {useEffect, useReducer, useState} from "react";
 import {InputTypes, Action} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
 import createMovieApiUrl from "./movieApiUrl";
-import {XLg} from "react-bootstrap-icons";
+import SearchHistory from "./SearchHistory";
 
 /**
  *
@@ -75,30 +75,6 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     }
 
     /**
-     * renders search history items in dropdown
-     * @returns {*}
-     */
-    const renderDropdown = () => {
-        const reversedList = historyState.list.slice().reverse();
-
-        return (
-                reversedList.map((item, index) => {
-                return (
-                    <li className="container d-flex justify-content-between align-items-center" key={index}>
-                        <a className="dropdown-item" onClick={(e) => { setSubmitValue(item)} } href="#">
-                            {item}
-                        </a>
-                        <a className="mt-1 btn" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>
-                            <XLg className="text-secondary"/>
-                        </a>
-                    </li>
-                );
-                })
-        );
-    };
-
-
-    /**
      * prevents input of digits while input type == year
      * @param e event
      */
@@ -110,7 +86,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     /**
      *
      * @param str string
-     * @returns {boolean} true if string contains non numeric characters, otherwise false
+     * @returns {boolean} true if string contains non-numeric characters, otherwise false
      */
     function containsNonNumericCharacter(str) {
         return /\D/.test(str);
@@ -130,21 +106,8 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
                     handleInputChange(e);
                 }}
             />
-                <ul className={`dropdown-menu dropdown-menu-dark ${historyState.list && historyState.list.length > 0 ? "visible" : "invisible"}`}>
-                    {renderDropdown()}
-                    <li>
-                        <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                        <a
-                            className="dropdown-item"
-                            onClick={() => historyDispatch({ type: Action.CLEAR })}
-                        >
-                            Clear Search History
-                        </a>
-                    </li>
-                </ul>
-        </form>
+            <SearchHistory historyState={historyState} historyDispatch={historyDispatch} setSubmitValue={setSubmitValue}/>
+            </form>
     );
 
 }
