@@ -43,6 +43,9 @@ The server side is responsible for two main things-
   it returns trending page data
 - if the server receives a request to delete a cart item that does not exist, it will respond with
 status success 200
+- there is a warning on the useEffect in the SubmitInput.js and file. We tried to switch it to callback as we
+did in other cases to avoid the dependency warning. However, an issue of race conditions occurred and we
+thought that this was a bigger issue than the warning, so we reverted the changes.
 
 
 ## ============================================
