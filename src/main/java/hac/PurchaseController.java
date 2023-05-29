@@ -13,6 +13,11 @@ public class PurchaseController {
     @Autowired
     private PurchaseRepository repository;  // this is the JPA repository (SQL database)
 
+    /**
+     * gets purchase data and save it in database
+     * @param purchase {@link Purchase}
+     * @return 
+     */
     @PostMapping("/purchases")
     public Purchase addPurchase(@RequestBody final Purchase purchase) {
         return repository.save(purchase); // this is a JPA method to save a purchase to the database
