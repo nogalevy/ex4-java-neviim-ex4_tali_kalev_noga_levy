@@ -10,6 +10,8 @@ export const Action = {
     CLEAR : 'clear'
 }
 
+export const GET_CART_API = '/api/cart';
+
 export const TRENDING_PAGE = '/trending/all/week?&language=en-US';
 
 export const GENRE_LIST = '/genre/movie/list?language=en'
