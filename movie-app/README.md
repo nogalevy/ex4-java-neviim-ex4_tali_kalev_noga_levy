@@ -1,11 +1,43 @@
+# Exercise #4
 ## Authors
 * Name: Noga Levy Email: levyno@edu.hac.ac.il
 * Name: Tali Kalev Email: talikal@edu.hac.ac.il
 
+## General Explanation
+In this assignment we implemented an e-commerce website that uses the TMDB API to search, 
+explore and "purchase" movies and tv shows using react js on the client side 
+and Spring REST API and session beans as well as an SQL database for recording purchases.
 
 
+### Client Side:
+- There are 3 main pages, the home page which displays the data retrieved from the TMDB API,
+the Cart page, which displays the items the user has added to the cart and option to purchase,
+and a Checkout page (only displayed if there are items in the cart) which allows the user to complete 
+their purchase.
+
+#### Search Attributes
+- Genre : The user can choose from a list of genres, this will retrieve a list of movies that
+are of the types chosen (logical AND)
+- Release Year : The user can search by year, this will retrieve a list of movies that were released
+during the inputted year
+- Title : The user can search by title, this will retrieve a list of movies or tv shows with the title 
+inputted.
+
+Note: Searching by genre is done by choosing items from the 'Choose Genre' dropdown. To search by title 
+or year, the user must use the toggle button next to the search bar in order to search by desired option.
 
 
+### Server Side:
+- some server side stuff
+
+## Additional Note:
+- only previous searches of type 'Title' are added to the search history
+- user can add movie item only once to cart
+- each movie/tv show has a modal, once opened displays more details about the item
+
+## ============================================
+
+## README PROVIDED:
 
 # Getting Started with Create React App
 
