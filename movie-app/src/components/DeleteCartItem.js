@@ -3,7 +3,6 @@ import axios from "axios";
 import toastify from "../utils/toastify";
 import {Trash3Fill} from "react-bootstrap-icons";
 import {DELETE_FROM_CART_FAIL_MSG, Action} from "../consts/consts";
-
 import {useCart} from "../contexts/CartContext";
 import Spinner from "./Spinner";
 

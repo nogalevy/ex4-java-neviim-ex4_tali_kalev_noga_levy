@@ -3,7 +3,7 @@ import {useCart} from "../contexts/CartContext";
 import {ADD_TO_CART_FAIL_MSG, PRICE, Action} from "../consts/consts";
 import toastify from "../utils/toastify";
 
-const AddToCart = ({inCart, setInCart, itemData}) => {
+export default function AddToCart({inCart, setInCart, itemData}){
     const {state, dispatch} = useCart();
 
     /**
@@ -34,12 +34,10 @@ const AddToCart = ({inCart, setInCart, itemData}) => {
                     :
                     <div className="d-flex justify-content-center">
                         <div className="btn btn-success w-75">
-                            added!
+                            Added!
                         </div>
                     </div>
                 }
             </div>
     );
 };
-
-export default AddToCart;

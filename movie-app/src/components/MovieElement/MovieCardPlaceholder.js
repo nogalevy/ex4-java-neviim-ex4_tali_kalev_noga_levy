@@ -6,7 +6,7 @@ import React from "react";
  * @returns {JSX.Element}
  * @constructor
  */
-const MovieCardPlaceholder = ({isCardLoad}) => {
+export default function MovieCardPlaceholder({isCardLoad}){
     return (
         <div className={`movie-card-con card ${isCardLoad ? 'd-none' : ''}`} aria-hidden="true">
             <img src='/placeholder.jpg' className='card-img-top' alt="placeholder"/>
@@ -18,5 +18,3 @@ const MovieCardPlaceholder = ({isCardLoad}) => {
         </div>
     );
 };
-
-export default MovieCardPlaceholder;

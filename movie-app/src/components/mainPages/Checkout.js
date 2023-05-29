@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toastify from "../../utils/toastify";
-import {PRICE, PURCHASE_SUCCESS_MSG, REQUEST_FAIL_MSG, Action} from "../../consts/consts";
+import {PRICE, PURCHASE_SUCCESS_MSG, REQUEST_FAIL_MSG, Action,FRACTION_DIGITS} from "../../consts/consts";
 import {useCart} from "../../contexts/CartContext";
 import Spinner from "../Spinner";
 import useFirstMount from "../../hooks/useFirstMount";
@@ -41,7 +41,7 @@ export default function Checkout() {
         };
         setIsLoading(true);
         try {
-            let res = await axios.post("/api/purchases", data);
+            await axios.post("/api/purchases", data);
             navigate("/");
             dispatch({type : Action.CLEAR})
             toastify.successToast(PURCHASE_SUCCESS_MSG)
@@ -56,7 +56,7 @@ export default function Checkout() {
     return (
         <div className="container d-flex flex-column align-items-center justify-content-center">
             <h2>Checkout</h2>
-            <h4 className="mb-4">Purchase Total: {(Object.keys(state.cart).length * PRICE).toFixed(2)}</h4>
+            <h4 className="mb-4">Purchase Total: {(Object.keys(state.cart).length * PRICE).toFixed(FRACTION_DIGITS)}</h4>
             <form className="m-auto form-floating text-dark" onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="form-floating mb-3 col-sm">

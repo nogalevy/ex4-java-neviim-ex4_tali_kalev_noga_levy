@@ -1,8 +1,12 @@
 import {Link} from "react-router-dom";
 import {useCart} from "../contexts/CartContext";
-
 import '../stylesheets/cart.css'
 
+/**
+ * displays cart button on nav bar + badge with amount of items in cart
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function CartNavItem(){
     const {state} = useCart();
 

@@ -1,8 +1,10 @@
 import {Action} from "../../consts/consts";
 import {XLg} from "react-bootstrap-icons";
 
+
 /**
  *
+ * @param show bool to show history or not depending on type
  * @param historyState array of recently searched words
  * @param historyDispatch dispatch to change historyState
  * @param setSubmitValue string to search using fetch api

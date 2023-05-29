@@ -7,7 +7,7 @@
  * @returns {JSX.Element}
  * @constructor
  */
-const MovieModal = ({id, img, title, description}) => {
+export default function MovieModal({id, img, title, description}){
     return (
     <div className="modal fade" id={`movie${id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-lg">
@@ -39,5 +39,3 @@ const MovieModal = ({id, img, title, description}) => {
     </div>
     )
 }
-
-export default MovieModal;

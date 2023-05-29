@@ -11,6 +11,8 @@ export const Action = {
     CLEAR : 'clear'
 }
 
+export const FRACTION_DIGITS = 2;
+
 export const DEFAULT_IMG_SRC = '/noimage1.png';
 export const GET_CART_API = '/api/cart';
 
