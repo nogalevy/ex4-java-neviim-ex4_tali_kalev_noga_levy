@@ -9,7 +9,6 @@ export default (function toastify() {
      * @param {*} msg  string
      */
     const errorToast = (msg) => {
-        console.log("HERE")
         toast.error(msg, {
             position: "bottom-right",
             autoClose: 3000,

@@ -1,6 +1,6 @@
 import {useState} from "react";
 import axios from "axios";
-import toastify from "../consts/toastify";
+import toastify from "../utils/toastify";
 import {Trash3Fill} from "react-bootstrap-icons";
 import {DELETE_FROM_CART_FAIL_MSG, Action} from "../consts/consts";
 
@@ -21,7 +21,6 @@ export default function DeleteCartItem({id}){
         setIsLoading(true)
         try{
             const res = await axios.delete('/api/cart/' + id);
-            console.log("deleted " ,id, res);
             dispatch({type: Action.DELETE, payload: {id}});
         }
         catch (err){

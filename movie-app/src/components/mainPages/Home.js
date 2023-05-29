@@ -1,6 +1,6 @@
-import Spinner from './Spinner';
-import MovieCard from './MovieElement/MovieCard';
-import { useMoviesContext } from "../contexts/MoviesContext";
+import Spinner from '../Spinner';
+import MovieCard from '../movieElement/MovieCard';
+import { useMoviesContext } from "../../contexts/MoviesContext";
 
 /**
  *
@@ -15,7 +15,6 @@ export default function Home(){
      * @returns {false|*|JSX.Element}
      */
     const createGrid = () => {
-        console.log("here", moviesData.data) //TODO: REMOVE
         if (!moviesData.data || !moviesData.data.results || moviesData.data.results.length === 0) {
             return (<div>Sorry, no search results.</div>)
         }

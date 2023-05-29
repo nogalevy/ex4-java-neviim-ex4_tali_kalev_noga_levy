@@ -13,7 +13,6 @@ export default function useFetch(url){
     useEffect(()=>{
         const fetchData = async () =>  {
             try{
-                console.log("INFETCH", url)
                 const res = await axios(url);
 
                 const dataToReturn = res.data
@@ -21,7 +20,6 @@ export default function useFetch(url){
                 setError(null);
             }catch(err){
                 setError(err.message);
-                console.log(err)
             }finally{
                 setIsPending(false)
             }

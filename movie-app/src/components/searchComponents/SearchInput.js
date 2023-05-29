@@ -1,10 +1,9 @@
 import {useEffect, useReducer, useState} from "react";
-import {InputTypes, Action} from "../consts/consts";
-import listReducer from "../reducers/listReducer";
-import createMovieApiUrl from "./movieApiUrl";
+import {InputTypes, Action} from "../../consts/consts";
+import listReducer from "../../reducers/listReducer";
 import SearchHistory from "./SearchHistory";
 import {useLocation, useNavigate} from "react-router-dom";
-import {getUrlDiscoverByYear, getUrlSearchByQuery} from "../consts/utills";
+import {getUrlDiscoverByYear, getUrlSearchByQuery, createMovieApiUrl} from "../../utils/movieApiUrl";
 
 /**
  * @param inputType toggle value - by year or by title

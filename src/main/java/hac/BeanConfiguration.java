@@ -12,7 +12,6 @@ public class BeanConfiguration {
     @SessionScope
     public ShoppingCart sessionBeanCart () {
         ShoppingCart shpc = new ShoppingCart();
-//      TODO: delete or something  m.add(new CartItem("I'm session bean Messages"));
         return shpc;
     }
 }

@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import toastify from "../consts/toastify";
-import {PRICE, PURCHASE_SUCCESS_MSG, REQUEST_FAIL_MSG, Action} from "../consts/consts";
-import {useCart} from "../contexts/CartContext";
-import Spinner from "./Spinner";
-import useFirstMount from "./useFirstMount";
+import toastify from "../../utils/toastify";
+import {PRICE, PURCHASE_SUCCESS_MSG, REQUEST_FAIL_MSG, Action} from "../../consts/consts";
+import {useCart} from "../../contexts/CartContext";
+import Spinner from "../Spinner";
+import useFirstMount from "../../hooks/useFirstMount";
 
 /**
  *
@@ -42,7 +42,6 @@ export default function Checkout() {
         setIsLoading(true);
         try {
             let res = await axios.post("/api/purchases", data);
-            console.log(res);
             navigate("/");
             dispatch({type : Action.CLEAR})
             toastify.successToast(PURCHASE_SUCCESS_MSG)

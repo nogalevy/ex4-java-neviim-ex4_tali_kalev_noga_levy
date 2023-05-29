@@ -14,7 +14,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class CartController {
-    @Autowired //NOGA: ?
+    @Autowired
     @Qualifier("sessionBeanCart")
     private ShoppingCart shoppingCart;
 
@@ -27,24 +27,19 @@ public class CartController {
     @PostMapping("/cart")
     public ResponseEntity<CartItem> addNewItem(@RequestBody final CartItem cartItem) {
         //add to session
-        //TODO: check if exist- try this:
          if(shoppingCart.getShoppingCart().containsKey(cartItem.getId())){
              return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
          }
-
         shoppingCart.add(cartItem);
-        System.out.println("added "+ cartItem.getTitle());
         return ResponseEntity.ok(cartItem) ;
     }
 
     @DeleteMapping("/cart/{id}")
     public ResponseEntity<Integer> deleteItemById(@PathVariable Integer id) {
-        //NOGA: if id not in map throw error or do nothing?
         shoppingCart.deleteById(id);
         return ResponseEntity.ok(id);
     }
 
-    //TODO: delete all
     @DeleteMapping("/cart")
     public ResponseEntity<String> deleteItemById() {
         shoppingCart.clear();

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CartItem {
-    private Integer id; //NOGA: string?
+    private Integer id;
     private String price;
     private String name;
     private String title;
