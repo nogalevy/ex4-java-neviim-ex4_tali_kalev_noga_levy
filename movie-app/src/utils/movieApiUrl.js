@@ -1,4 +1,16 @@
-import {DEFAULT_IMG_SRC} from "./consts";
+import {DEFAULT_IMG_SRC} from "../consts/consts";
+
+const API_KEY = "3285bfe9a9135db7c2dc2f19ede60c9a";
+const DOMAIN = "https://api.themoviedb.org/3";
+
+/**
+ *
+ * @param url partial url for movies API
+ * @returns {string} full url including domain and api key for fetch
+ */
+export function createMovieApiUrl(url){
+    return DOMAIN + url + `&api_key=` + API_KEY
+}
 
 /**
  * @param element from api

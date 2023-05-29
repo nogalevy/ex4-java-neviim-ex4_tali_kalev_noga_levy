@@ -1,6 +1,6 @@
 import {useState} from "react";
 import axios from "axios";
-import toastify from "../consts/toastify";
+import toastify from "../utils/toastify";
 import {Trash3Fill} from "react-bootstrap-icons";
 import {DELETE_FROM_CART_FAIL_MSG, Action} from "../consts/consts";
 

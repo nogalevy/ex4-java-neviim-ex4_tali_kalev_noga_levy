@@ -1,9 +1,8 @@
-import useFetch from "./useFetch";
+import useFetch from "../../hooks/useFetch";
 import {useEffect} from "react";
-import {GENRE_LIST, Action, TRENDING_PAGE} from "../consts/consts";
-import createMovieApiUrl from "./movieApiUrl"
+import {GENRE_LIST, Action, TRENDING_PAGE} from "../../consts/consts";
+import {createMovieApiUrl, getUrlDiscoverByGenres} from "../../utils/movieApiUrl"
 import {useLocation, useNavigate} from 'react-router-dom';
-import {getUrlDiscoverByGenres} from "../consts/utills";
 
 export default function GenreSearch({genreState, genreDispatch, setUrl}){
     const { data:genreData } = useFetch(createMovieApiUrl(GENRE_LIST)); //retrieves types of genres for dropdown

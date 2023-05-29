@@ -1,6 +1,6 @@
 import {useState} from "react";
-import {getImageTitleAndSrc} from "../consts/utills";
-import useFirstMount from "./useFirstMount";
+import {getImageTitleAndSrc} from "../utils/movieApiUrl";
+import useFirstMount from "../hooks/useFirstMount";
 import DeleteCartItem from "./DeleteCartItem";
 
 export default function CartItemCard({element}){

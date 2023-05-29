@@ -3,12 +3,12 @@ import {Outlet} from "react-router";
 import {Action, GET_CART_API, TRENDING_PAGE} from "../consts/consts";
 import {useCart} from "../contexts/CartContext";
 import {useEffect, useReducer, useState} from "react";
-import useFetch from "./useFetch";
+import useFetch from "../hooks/useFetch";
 import {useMoviesContext} from "../contexts/MoviesContext";
 import listReducer from "../reducers/listReducer";
-import Search from "./Search";
+import Search from "./searchComponents/Search";
 import CartNavItem from "./CartNavItem";
-import createMovieApiUrl from "./movieApiUrl";
+import {createMovieApiUrl} from "../utils/movieApiUrl";
 
 /**
  *

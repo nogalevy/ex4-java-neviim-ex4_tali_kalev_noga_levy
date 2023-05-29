@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SearchInput from "./SearchInput";
-import {InputTypes} from "../consts/consts";
+import {InputTypes} from "../../consts/consts";
 import GenreSearch from "./GenreSearch";
 
 /**

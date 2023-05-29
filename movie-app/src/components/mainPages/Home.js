@@ -1,6 +1,6 @@
-import Spinner from './Spinner';
-import MovieCard from './MovieElement/MovieCard';
-import { useMoviesContext } from "../contexts/MoviesContext";
+import Spinner from '../Spinner';
+import MovieCard from '../movieElement/MovieCard';
+import { useMoviesContext } from "../../contexts/MoviesContext";
 
 /**
  *

@@ -1,4 +1,4 @@
-import {Action} from "../consts/consts";
+import {Action} from "../../consts/consts";
 import {XLg} from "react-bootstrap-icons";
 
 /**

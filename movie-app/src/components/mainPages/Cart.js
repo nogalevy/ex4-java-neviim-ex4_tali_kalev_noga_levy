@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import axios from "axios";
 import {Link} from 'react-router-dom';
-import {PRICE, REQUEST_FAIL_MSG} from "../consts/consts";
-import {useCart} from "../contexts/CartContext";
-import toastify from "../consts/toastify";
+import {PRICE, REQUEST_FAIL_MSG} from "../../consts/consts";
+import {useCart} from "../../contexts/CartContext";
+import toastify from "../../utils/toastify";
 
-import CartItemCard from "./CartItemCard";
-import Spinner from "./Spinner";
+import CartItemCard from "../CartItemCard";
+import Spinner from "../Spinner";
 
-import "../stylesheets/cart.css"
+import "../../stylesheets/cart.css"
 
 export default function Cart() {
     const {state, dispatch} = useCart();

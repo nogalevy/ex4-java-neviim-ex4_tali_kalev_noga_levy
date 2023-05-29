@@ -3,11 +3,11 @@ import {ToastContainer} from "react-toastify";
 import { MoviesProvider } from "./contexts/MoviesContext";
 import {CartProvider} from "./contexts/CartContext";
 
-import Home from "./components/Home";
-import NotFound from "./components/NotFound";
+import Home from "./components/mainPages/Home";
+import NotFound from "./components/mainPages/NotFound";
 import Menu from "./components/Menu";
-import Checkout from "./components/Checkout";
-import Cart from "./components/Cart";
+import Checkout from "./components/mainPages/Checkout";
+import Cart from "./components/mainPages/Cart";
 
 import 'react-toastify/dist/ReactToastify.css';
 

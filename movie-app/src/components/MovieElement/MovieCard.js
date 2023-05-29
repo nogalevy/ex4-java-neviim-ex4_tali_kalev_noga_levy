@@ -2,13 +2,13 @@ import {useState} from 'react';
 import {useCart} from "../../contexts/CartContext";
 import {ArrowsAngleExpand} from "react-bootstrap-icons";
 
-import useFirstMount from "../useFirstMount";
+import useFirstMount from "../../hooks/useFirstMount";
 import AddToCart from "../AddToCart";
 import MovieCardPlaceholder from "./MovieCardPlaceholder";
 import MovieModal from "./MovieModal";
 
 import '../../stylesheets/movieCard.css'
-import {getImageTitleAndSrc} from "../../consts/utills";
+import {getImageTitleAndSrc} from "../../utils/movieApiUrl";
 
 
 const MovieCard = ({ element , index}) => {
