@@ -8,6 +8,11 @@ import java.io.Serializable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.PositiveOrZero;
+import static hac.Constants.EMAIL_MANDATORY;
+import static hac.Constants.FIRST_NAME_MANDATORY;
+import static hac.Constants.LAST_NAME_MANDATORY;
+import static hac.Constants.EMAIL_VALID;
+import static hac.Constants.PAYMENT_POSITIVE;
 
 /**
  * a purchase is a record of a user buying a product. You should not need to edit this file
@@ -19,17 +24,17 @@ public class Purchase implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "First name is mandatory")
+    @NotEmpty(message = FIRST_NAME_MANDATORY)
     private String firstName;
 
-    @NotEmpty(message = "Last name is mandatory")
+    @NotEmpty(message = LAST_NAME_MANDATORY)
     private String lastName;
 
-    @NotEmpty(message = "Email is mandatory")
-    @Email(message = "Email should be valid")
+    @NotEmpty(message = EMAIL_MANDATORY)
+    @Email(message = EMAIL_VALID)
     private String email;
 
-    @PositiveOrZero(message = "Payment must be positive or zero")
+    @PositiveOrZero(message = PAYMENT_POSITIVE)
     private Double payment = 0.0;
 
     public Purchase(String email, Double total, String firstName, String lastName) {
