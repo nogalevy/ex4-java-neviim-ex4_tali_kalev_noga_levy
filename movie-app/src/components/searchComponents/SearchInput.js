@@ -1,4 +1,4 @@
-import {useEffect, useReducer, useState} from "react";
+import {useCallback, useEffect, useReducer, useState} from "react";
 import {InputTypes, Action} from "../../consts/consts";
 import listReducer from "../../reducers/listReducer";
 import SearchHistory from "./SearchHistory";
@@ -17,14 +17,19 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const [inputText, setInputText] = useState('')
     const [historyState, historyDispatch] = useReducer(listReducer, {list : []});
     const location = useLocation()
-    const navigate = useNavigate ();
+    const navigate = useNavigate();
+
+    const cbSetText = useCallback((val)=>{
+        setInputText(val);
+    }, [setInputText])
 
     /**
      * on change of toggle, text in search bar is cleared
      */
     useEffect(() => {
-        setInputText('');
-    },[inputType]);
+        cbSetText('');
+    },[cbSetText]);
+
 
     /**
      * if value submitted in search bar changed, handle search and add item to history
@@ -65,7 +70,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const handleSearch = () => {
         handleURL();
         genreDispatch({ type: Action.CLEAR});
-        setInputText('')
+        setInputText('');
     }
 
     /**
