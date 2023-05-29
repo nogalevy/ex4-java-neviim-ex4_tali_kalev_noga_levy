@@ -5,9 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
-import jakarta.validation.constraints.Email; // FIX!!!!
-import jakarta.validation.constraints.NotEmpty; // FIX!!!!
-import jakarta.validation.constraints.PositiveOrZero; // FIX!!!
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PositiveOrZero;
 
 /**
  * a purchase is a record of a user buying a product. You should not need to edit this file
