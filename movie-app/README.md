@@ -16,15 +16,16 @@ and a Checkout page (only displayed if there are items in the cart) which allows
 their purchase.
 
 #### Search Attributes
-- Genre : The user can choose from a list of genres, this will retrieve a list of movies that
+- By Genre : The user can choose from a list of genres, this will retrieve a list of movies that
 are of the types chosen (logical AND)
-- Release Year : The user can search by year, this will retrieve a list of movies that were released
+- By Release Year : The user can search by year, this will retrieve a list of movies that were released
 during the inputted year
-- Title : The user can search by title, this will retrieve a list of movies or tv shows with the title 
+- By Title : The user can search by title, this will retrieve a list of movies or tv shows with the title 
 inputted.
 
 Note: Searching by genre is done by choosing items from the 'Choose Genre' dropdown. To search by title 
-or year, the user must use the toggle button next to the search bar in order to search by desired option.
+or year, the user must use the toggle button next to the search bar in order to switch between options 
+and then input search request into search bar.
 
 
 ### Server Side:
@@ -34,6 +35,8 @@ or year, the user must use the toggle button next to the search bar in order to 
 - only previous searches of type 'Title' are added to the search history
 - user can add movie item only once to cart
 - each movie/tv show has a modal, once opened displays more details about the item
+- the default items displayed are "trending" movies and tv shows retrieved using the
+  '/trending/all/week?&language=en-US' TMDB API
 
 ## ============================================
 

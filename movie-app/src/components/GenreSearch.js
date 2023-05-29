@@ -4,15 +4,14 @@ import {GENRE_LIST, Action, TRENDING_PAGE} from "../consts/consts";
 import createMovieApiUrl from "./movieApiUrl"
 
 export default function GenreSearch({genreState, genreDispatch, setUrl}){
-    //AND between genres, %2C, OR between genres %7C
-    const { data:genreData } = useFetch(createMovieApiUrl(GENRE_LIST));
+    const { data:genreData } = useFetch(createMovieApiUrl(GENRE_LIST)); //retrieves types of genres for dropdown
 
     /**
      * on change of list of genres chosen, builds url to fetch genres
      */
     useEffect(() => {
         if (genreState.list.length > 0){
-            let genres = genreState.list.join(',')
+            let genres = genreState.list.join(',') //logical AND
             let u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}`
             setUrl(createMovieApiUrl(u))
         }
