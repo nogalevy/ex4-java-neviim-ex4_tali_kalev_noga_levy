@@ -3,8 +3,7 @@ import {useCart} from "../contexts/CartContext";
 import {ADD_TO_CART_FAIL_MSG, PRICE, Action} from "../consts/consts";
 import toastify from "../consts/toastify";
 
-
-const AddToCart = ({inCart, setInCart, itemData, index}) => {
+const AddToCart = ({inCart, setInCart, itemData}) => {
     const {state, dispatch} = useCart();
 
     const addToCart = async() =>{
@@ -23,7 +22,6 @@ const AddToCart = ({inCart, setInCart, itemData, index}) => {
     }
 
     return (
-        //TODO: maybe add to css file
             <div className="h-100 row align-items-center justify-content-center ">
                 {
                     !inCart ?
@@ -31,7 +29,6 @@ const AddToCart = ({inCart, setInCart, itemData, index}) => {
                         Add to cart
                     </button>
                     :
-                    //     NOGA:
                     <div className="d-flex justify-content-center">
                         <div className="btn btn-success w-75">
                             added!

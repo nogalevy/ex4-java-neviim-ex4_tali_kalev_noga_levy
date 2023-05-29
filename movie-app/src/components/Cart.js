@@ -1,13 +1,14 @@
-import {Link} from 'react-router-dom';
-import {useCart} from "../contexts/CartContext";
-import axios from "axios";
-import CartItemCard from "./CartItemCard";
 import React, {useState} from "react";
-import "../stylesheets/colors.css"
-import "../stylesheets/cart.css"
+import axios from "axios";
+import {Link} from 'react-router-dom';
 import {PRICE, REQUEST_FAIL_MSG} from "../consts/consts";
+import {useCart} from "../contexts/CartContext";
 import toastify from "../consts/toastify";
+
+import CartItemCard from "./CartItemCard";
 import Spinner from "./Spinner";
+
+import "../stylesheets/cart.css"
 
 export default function Cart() {
     const {state, dispatch} = useCart();
@@ -15,11 +16,9 @@ export default function Cart() {
 
     const createList = () => {
         if( !state || !state.cart ) return;
-        return Object.values(state.cart).map((element) => {
-            return (
+        return Object.values(state.cart).map((element) =>
                 <CartItemCard key={element.id} element={element}/>
-            )
-        })
+        );
     }
 
     const emptyCart = async ()=>{
@@ -62,6 +61,5 @@ export default function Cart() {
                 }
             </div>
         </div>
-
     );
 }

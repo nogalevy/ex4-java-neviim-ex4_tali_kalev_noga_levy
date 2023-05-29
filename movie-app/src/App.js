@@ -1,15 +1,14 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {ToastContainer} from "react-toastify";
+import { MoviesProvider } from "./contexts/MoviesContext";
+import {CartProvider} from "./contexts/CartContext";
+
 import Home from "./components/Home";
-// import OtherPage from "./components/OtherPage";
 import NotFound from "./components/NotFound";
 import Menu from "./components/Menu";
 import Checkout from "./components/Checkout";
 import Cart from "./components/Cart";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import PageWithData from "./components/PageWithData";
-import './stylesheets/colors.css';
-import { MoviesProvider } from "./contexts/MoviesContext";
-import {CartProvider} from "./contexts/CartContext";
-import {ToastContainer} from "react-toastify";
+
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {

@@ -1,9 +1,10 @@
-import {Trash3Fill} from "react-bootstrap-icons";
-import {useCart} from "../contexts/CartContext";
+import {useState} from "react";
 import axios from "axios";
 import toastify from "../consts/toastify";
+import {Trash3Fill} from "react-bootstrap-icons";
 import {DELETE_FROM_CART_FAIL_MSG, Action} from "../consts/consts";
-import {useState} from "react";
+
+import {useCart} from "../contexts/CartContext";
 import Spinner from "./Spinner";
 
 export default function DeleteCartItem({id}){

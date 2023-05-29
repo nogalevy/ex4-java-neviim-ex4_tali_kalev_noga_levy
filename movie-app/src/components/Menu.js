@@ -1,12 +1,12 @@
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {Outlet} from "react-router";
-import Search from "./Search";
+import {Action, GET_CART_API, TRENDING_PAGE} from "../consts/consts";
 import {useCart} from "../contexts/CartContext";
 import {useEffect, useReducer, useState} from "react";
 import useFetch from "./useFetch";
 import {useMoviesContext} from "../contexts/MoviesContext";
-import {Action, GET_CART_API, TRENDING_PAGE} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
+import Search from "./Search";
 import CartNavItem from "./CartNavItem";
 import createMovieApiUrl from "./movieApiUrl";
 
@@ -67,7 +67,6 @@ export default function Menu() {
                         <CartNavItem/>
                     </ul>
                     <Search genreState={genreState} genreDispatch={genreDispatch} setUrl={setUrl}/>
-
                 </div>
             </div>
         </nav>
