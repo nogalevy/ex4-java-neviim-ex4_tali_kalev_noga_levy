@@ -1,4 +1,4 @@
-import {Link, useLocation, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {Outlet} from "react-router";
 import {Action, GET_CART_API, TRENDING_PAGE} from "../consts/consts";
 import {useCart} from "../contexts/CartContext";
@@ -20,9 +20,7 @@ export default function Menu() {
     const { error, isPending, data } = useFetch(url);
     const [genreState, genreDispatch] = useReducer(listReducer, { list: [] });
     const {setMoviesData} = useMoviesContext()
-    const navigate = useNavigate ();
     const {dispatch} = useCart();
-    const location = useLocation();
     const {data : cartData} = useFetch(GET_CART_API)
 
     /**
@@ -30,7 +28,7 @@ export default function Menu() {
      */
     useEffect(()=>{
         if (cartData){
-            dispatch({type: 'init', payload: cartData})
+            dispatch({type: Action.INIT, payload: cartData})
         }
     },[cartData])
 
@@ -38,7 +36,6 @@ export default function Menu() {
      * on change of movie data fetched from movie api, sets context of movie data for display on home page
      */
     useEffect(() => {
-        if(location.pathname === '/cart' || location.pathname === '/checkout') navigate('/'); //NOGA:
         setMoviesData({error, isPending, data})
     }, [error, isPending, data])
 

@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toastify from "../consts/toastify";
 import {PRICE, PURCHASE_SUCCESS_MSG, REQUEST_FAIL_MSG, Action} from "../consts/consts";
-
 import {useCart} from "../contexts/CartContext";
 import Spinner from "./Spinner";
+import useFirstMount from "./useFirstMount";
 
 /**
  *
@@ -19,6 +19,12 @@ export default function Checkout() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const {state, dispatch} = useCart();
+
+    useFirstMount(()=>{
+        if(Object.keys(state.cart).length === 0){
+            navigate('/cart');
+        }
+    })
 
     /**
      * @param e event

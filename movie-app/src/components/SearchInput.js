@@ -3,6 +3,7 @@ import {InputTypes, Action} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
 import createMovieApiUrl from "./movieApiUrl";
 import SearchHistory from "./SearchHistory";
+import {useLocation, useNavigate} from "react-router-dom";
 
 /**
  *
@@ -16,6 +17,8 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const [submitValue, setSubmitValue] = useState('');
     const [inputText, setInputText] = useState('')
     const [historyState, historyDispatch] = useReducer(listReducer, {list : []});
+    const location = useLocation()
+    const navigate = useNavigate ();
 
     /**
      * on change of toggle, text in search bar is cleared
@@ -44,6 +47,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
         } else if (inputType === InputTypes.YEAR) {
             u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=${submitValue}&sort_by=popularity.desc`
         }
+        if (location.pathname !== '/') navigate('/');
         setUrl(createMovieApiUrl(u));
     }
 
