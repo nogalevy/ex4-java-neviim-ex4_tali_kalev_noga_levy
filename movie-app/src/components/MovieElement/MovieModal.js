@@ -1,8 +1,5 @@
-import '../../stylesheets/colors.css'
-
 const MovieModal = ({id, img, title, description}) => {
     return (
-        // Modal
     <div className="modal fade" id={`movie${id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-lg">
             <div className="modal-content text-bg-light">

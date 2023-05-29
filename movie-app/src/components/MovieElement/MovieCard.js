@@ -1,12 +1,14 @@
-import AddToCart from "../AddToCart";
 import {useState} from 'react';
 import {useCart} from "../../contexts/CartContext";
-import '../../stylesheets/movieCard.css'
-import {ArrowsAngleExpand} from "react-bootstrap-icons"
-import MovieModal from "./MovieModal";
-import MovieCardPlaceholder from "./MovieCardPlaceholder";
-import useFirstMount from "../useFirstMount";
+import {ArrowsAngleExpand} from "react-bootstrap-icons";
 
+import useFirstMount from "../useFirstMount";
+import AddToCart from "../AddToCart";
+import MovieCardPlaceholder from "./MovieCardPlaceholder";
+import MovieModal from "./MovieModal";
+
+import '../../stylesheets/movieCard.css'
+import {getImageTitleAndSrc} from "../../consts/utills";
 
 const MovieCard = ({ element , index}) => {
     const [isCardLoad, setIsCardLoad] = useState(false)
@@ -16,24 +18,12 @@ const MovieCard = ({ element , index}) => {
     const {state} = useCart();
 
     useFirstMount(function (){
-        const img = element.poster_path || element.backdrop_path;
-        if(img)  setImgSrc(`https://image.tmdb.org/t/p/w500${img}`);
-        else setImgSrc('/noimage1.png'); //TODO: add to const
-        const title = element.name || element.title || "unknown name";
+        const [src, title] = getImageTitleAndSrc(element)
+        setImgSrc(src);
         setTitle(title);
 
         isInCart();
     })
-    //NOGA: ??
-    // useEffect(()=>{
-    //     const img = element.poster_path || element.backdrop_path;
-    //     if(img)  setImgSrc(`https://image.tmdb.org/t/p/w500${img}`);
-    //     else setImgSrc('/noimage1.png'); //TODO: add to const
-    //     const title = element.name || element.title || "unknown name";
-    //     setTitle(title);
-    //
-    //     isInCart();
-    // },[])
 
     const isInCart = () => {
         if(state.cart && state.cart.hasOwnProperty(element.id)){
@@ -42,7 +32,6 @@ const MovieCard = ({ element , index}) => {
     }
 
     return (
-
         <div className="col" key={element.id}>
             {/*card:*/}
             <div className={`movie-card-con card position-relative  ${!isCardLoad ? 'd-none' : ''}`}>

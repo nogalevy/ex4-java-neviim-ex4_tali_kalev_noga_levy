@@ -11,6 +11,7 @@ export const Action = {
     CLEAR : 'clear'
 }
 
+export const DEFAULT_IMG_SRC = '/noimage1.png';
 export const GET_CART_API = '/api/cart';
 
 export const TRENDING_PAGE = '/trending/all/week?&language=en-US';
@@ -25,3 +26,4 @@ export const ADD_TO_CART_FAIL_MSG = "Could not add to cart, try again later"
 export const DELETE_FROM_CART_FAIL_MSG = "Could not delete item, try again later"
 
 export const UNHANDLED_ACTION_ERROR = "Unhandled action type"
+

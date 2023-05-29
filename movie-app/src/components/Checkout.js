@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toastify from "../consts/toastify";
-import {useCart} from "../contexts/CartContext";
 import {PRICE, PURCHASE_SUCCESS_MSG, REQUEST_FAIL_MSG, Action} from "../consts/consts";
-import '../stylesheets/colors.css';
+
+import {useCart} from "../contexts/CartContext";
 import Spinner from "./Spinner";
 
 /**
@@ -13,16 +13,14 @@ import Spinner from "./Spinner";
  * @constructor
  */
 export default function Checkout() {
-    const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
     const {state, dispatch} = useCart();
 
-
     /**
-     *
      * @param e event
      * @returns {Promise<void>}
      */
@@ -43,7 +41,6 @@ export default function Checkout() {
             dispatch({type : Action.CLEAR})
             toastify.successToast(PURCHASE_SUCCESS_MSG)
         } catch (err) {
-            console.log("Error:", err);
             toastify.errorToast(REQUEST_FAIL_MSG)
         }
         finally {
@@ -94,11 +91,9 @@ export default function Checkout() {
                     />
                     <label htmlFor="floatingEmail">Email</label>
                 </div>
-                {/*<div className="col-12 mt-3">*/}
                     <button type="submit" className="btn btn-primary col-12 mt-3">
                         {!isLoading ? 'Submit' : <Spinner/>}
                     </button>
-                {/*</div>*/}
             </form>
         </div>
     );
