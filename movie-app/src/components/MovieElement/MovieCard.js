@@ -45,7 +45,7 @@ const MovieCard = ({ element , index}) => {
 
         <div className="col" key={element.id}>
             {/*card:*/}
-            <div className={`movie-card-con card position-relative ${!isCardLoad ? 'd-none' : ''}`}>
+            <div className={`movie-card-con card position-relative  ${!isCardLoad ? 'd-none' : ''}`}>
                 <div className="card-con">
                     <div className="position-relative ">
                         <img onLoad={() => { setIsCardLoad(true);}} src={imgSrc}
