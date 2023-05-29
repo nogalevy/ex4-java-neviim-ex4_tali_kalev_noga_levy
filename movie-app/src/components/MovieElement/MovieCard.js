@@ -13,8 +13,8 @@ import {getImageTitleAndSrc} from "../../consts/utills";
 
 const MovieCard = ({ element , index}) => {
     const [isCardLoad, setIsCardLoad] = useState(false)
-    const [imgSrc, setImgSrc] = useState(''); //NOGA:
-    const [title, setTitle] = useState(''); //NOGA:
+    const [imgSrc, setImgSrc] = useState('');
+    const [title, setTitle] = useState('');
     const [inCart, setInCart] = useState(false);
     const {state} = useCart();
 

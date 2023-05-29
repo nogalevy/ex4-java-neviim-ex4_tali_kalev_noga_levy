@@ -21,7 +21,6 @@ export default function DeleteCartItem({id}){
         setIsLoading(true)
         try{
             const res = await axios.delete('/api/cart/' + id);
-            console.log("deleted " ,id, res);
             dispatch({type: Action.DELETE, payload: {id}});
         }
         catch (err){

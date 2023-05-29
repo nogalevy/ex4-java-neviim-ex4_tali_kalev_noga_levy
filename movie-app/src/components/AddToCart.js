@@ -16,7 +16,6 @@ const AddToCart = ({inCart, setInCart, itemData}) => {
 
         try{
             let res = await axios.post('/api/cart', {...itemData, price: PRICE});
-            console.log(res);
             dispatch({type: Action.ADD , payload: res.data });
             setInCart(true);
         }

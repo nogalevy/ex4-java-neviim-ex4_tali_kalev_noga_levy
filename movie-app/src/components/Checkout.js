@@ -42,7 +42,6 @@ export default function Checkout() {
         setIsLoading(true);
         try {
             let res = await axios.post("/api/purchases", data);
-            console.log(res);
             navigate("/");
             dispatch({type : Action.CLEAR})
             toastify.successToast(PURCHASE_SUCCESS_MSG)
