@@ -16,7 +16,7 @@ public class PurchaseController {
     /**
      * gets purchase data and save it in database
      * @param purchase {@link Purchase}
-     * @return 
+     * @return
      */
     @PostMapping("/purchases")
     public Purchase addPurchase(@RequestBody final Purchase purchase) {
