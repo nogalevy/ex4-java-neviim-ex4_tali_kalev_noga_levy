@@ -1,7 +1,4 @@
-// const CART_ACTIONS = {
-//     ADD_NEW : 'addNew',
-//     DELETE : 'delete'
-// }
+import {Action, UNHANDLED_ACTION_ERROR} from "../consts/consts";
 
 /**
  * A reducer that handles the count state
@@ -11,22 +8,22 @@
  */
 export default function cartReducer(state = {cart: {}}, action) {
     switch (action.type) {
-        case 'init': {
+        case Action.INIT: {
             return {cart : action.payload}
         }
-        case 'delete': {
+        case Action.DELETE: {
             let temp = state.cart;
             delete temp[action.payload.id];
             return {cart: temp};
         }
-        case 'add': {
+        case Action.ADD: {
             return { cart: {...state.cart, [action.payload.id]: action.payload }};
         }
-        case 'clear': {
+        case Action.CLEAR: {
             return { cart: {}};
         }
         default: {
-            throw new Error(`Unhandled action type: ${action.type}`)
+            throw new Error(`${UNHANDLED_ACTION_ERROR}: ${action.type}`);
         }
     }
 }

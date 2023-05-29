@@ -1,4 +1,4 @@
-import {Action} from "../consts/consts";
+import {Action, UNHANDLED_ACTION_ERROR} from "../consts/consts";
 
 /**
  *
@@ -18,7 +18,7 @@ export default function listReducer(state, action) {
             return { list: [] };
         }
         default: {
-            throw new Error(`Unhandled action type: ${action.type}`);
+            throw new Error(`${UNHANDLED_ACTION_ERROR}: ${action.type}`);
         }
     }
 }

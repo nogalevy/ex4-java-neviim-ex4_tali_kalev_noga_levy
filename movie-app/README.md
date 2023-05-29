@@ -1,3 +1,12 @@
+## Authors
+* Name: Noga Levy Email: levyno@edu.hac.ac.il
+* Name: Tali Kalev Email: talikal@edu.hac.ac.il
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

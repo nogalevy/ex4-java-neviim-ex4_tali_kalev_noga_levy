@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useCart} from "../contexts/CartContext";
-import {ADD_TO_CART_FAIL_MSG, PRICE} from "../consts/consts";
+import {ADD_TO_CART_FAIL_MSG, PRICE, Action} from "../consts/consts";
 import toastify from "../consts/toastify";
 
 
@@ -14,7 +14,7 @@ const AddToCart = ({inCart, setInCart, itemData, index}) => {
         try{
             let res = await axios.post('/api/cart', {...itemData, price: PRICE});
             console.log(res);
-            dispatch({type: 'add' , payload: res.data });
+            dispatch({type: Action.ADD , payload: res.data });
             setInCart(true);
         }
         catch (err){

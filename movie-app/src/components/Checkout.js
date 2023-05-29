@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toastify from "../consts/toastify";
 import {useCart} from "../contexts/CartContext";
-import {PRICE, PURCHASE_SUCCESS_MSG, PURCHASE_FAIL_MSG} from "../consts/consts";
+import {PRICE, PURCHASE_SUCCESS_MSG, REQUEST_FAIL_MSG, Action} from "../consts/consts";
 import '../stylesheets/colors.css';
 import Spinner from "./Spinner";
 
@@ -17,7 +17,7 @@ export default function Checkout() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [isLoad, setIsLoad] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const {state, dispatch} = useCart();
 
 
@@ -27,7 +27,7 @@ export default function Checkout() {
      * @returns {Promise<void>}
      */
     const handleSubmit = async (e) => {
-        if(isLoad) return;
+        if(isLoading) return;
         e.preventDefault();
         const data = {
             firstName,
@@ -35,19 +35,19 @@ export default function Checkout() {
             email,
             payment: Object.keys(state.cart).length * PRICE
         };
-        setIsLoad(true);
+        setIsLoading(true);
         try {
             let res = await axios.post("/api/purchases", data);
             console.log(res);
             navigate("/");
-            dispatch({type :'clear'})
+            dispatch({type : Action.CLEAR})
             toastify.successToast(PURCHASE_SUCCESS_MSG)
         } catch (err) {
             console.log("Error:", err);
-            toastify.errorToast(PURCHASE_FAIL_MSG)
+            toastify.errorToast(REQUEST_FAIL_MSG)
         }
         finally {
-            setIsLoad(false);
+            setIsLoading(false);
         }
     };
 
@@ -96,7 +96,7 @@ export default function Checkout() {
                 </div>
                 {/*<div className="col-12 mt-3">*/}
                     <button type="submit" className="btn btn-primary col-12 mt-3">
-                        {!isLoad ? 'Submit' : <Spinner/>}
+                        {!isLoading ? 'Submit' : <Spinner/>}
                     </button>
                 {/*</div>*/}
             </form>
