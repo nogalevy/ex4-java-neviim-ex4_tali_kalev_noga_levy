@@ -102,7 +102,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
                 type="search"
                 className="text-dark dropdown-toggle form-control rounded-5 py-2 px-3"
                 data-bs-toggle="dropdown"
-                aria-expanded="false"
+                // aria-expanded="false"
                 placeholder={`Search by ${inputType}`}
                 required
                 value={inputText}
