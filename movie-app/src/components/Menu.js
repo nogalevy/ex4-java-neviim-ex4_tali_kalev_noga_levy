@@ -3,14 +3,12 @@ import {Outlet} from "react-router";
 import Search from "./Search";
 import {useCart} from "../contexts/CartContext";
 import {useEffect, useReducer, useState} from "react";
-import axios from "axios";
 import useFetch from "./useFetch";
 import {useMoviesContext} from "../contexts/MoviesContext";
-import {Action, TRENDING_PAGE} from "../consts/consts";
+import {Action, GET_CART_API, TRENDING_PAGE} from "../consts/consts";
 import listReducer from "../reducers/listReducer";
 import CartNavItem from "./CartNavItem";
 import createMovieApiUrl from "./movieApiUrl";
-import useFirstMount from "./useFirstMount";
 
 /**
  *
@@ -25,32 +23,16 @@ export default function Menu() {
     const navigate = useNavigate ();
     const {dispatch} = useCart();
     const location = useLocation();
+    const {data : cartData} = useFetch(GET_CART_API)
 
-    useFirstMount(
-        async function() {
-            try {
-                let res = await axios('/api/cart');
-                // dispatch({type :'init', payload: Object.values(res.data)})
-                dispatch({type: 'init', payload: res.data})
-            } catch (e) {
-            }
-        }
-    )
     /**
-     * on first load - inits cart data from api
+     * on first load, retrieve cartData from api to display in card page
      */
-    // useEffect(()=>{
-    //     async function getCart(){
-    //         try{
-    //             let res = await axios('/api/cart');
-    //             // dispatch({type :'init', payload: Object.values(res.data)})
-    //             dispatch({type :'init', payload: res.data})
-    //         }
-    //         catch (e) {
-    //         }
-    //     }
-    //     getCart(); //NOGA: ?????????????????????????????????????????????????????
-    // },[])
+    useEffect(()=>{
+        if (cartData){
+            dispatch({type: 'init', payload: cartData})
+        }
+    },[cartData])
 
     /**
      * on change of movie data fetched from movie api, sets context of movie data for display on home page
@@ -91,20 +73,6 @@ export default function Menu() {
         </nav>
         <Outlet />
     </>
-
-    // <div>
-    //     <h1>An example of browser-router</h1>
-    //
-    //     <Link to="/">Home</Link> {' '} | {' '}
-    //     <Link to="/otherpage">Other page</Link> {' '} | {' '}
-    //     <Link to="/params/12">Params page</Link>
-    //
-    //     {/* An <Outlet> renders whatever child route is currently active,
-    //       so you can think about this <Outlet> as a placeholder for
-    //       the child routes we defined above. */}
-    //     <Outlet />
-    //
-    // </div>
     );
 }
 
