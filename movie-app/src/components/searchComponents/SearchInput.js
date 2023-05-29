@@ -70,7 +70,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const handleSearch = () => {
         handleURL();
         genreDispatch({ type: Action.CLEAR});
-        setInputText('')
+        setInputText('');
     }
 
     /**

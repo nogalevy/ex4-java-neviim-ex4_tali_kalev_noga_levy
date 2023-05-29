@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useCart} from "../../contexts/CartContext";
 import {ArrowsAngleExpand} from "react-bootstrap-icons";
 import useFirstMount from "../../hooks/useFirstMount";
