@@ -120,7 +120,7 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
         <form className="nav-item dropdown" role="search" onSubmit={handleSubmit}>
             <input
                 type="search"
-                className="text-dark dropdown-toggle form-control rounded-5"
+                className="text-dark dropdown-toggle form-control rounded-5 py-2 px-3"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 placeholder={`Search by ${inputType}`}

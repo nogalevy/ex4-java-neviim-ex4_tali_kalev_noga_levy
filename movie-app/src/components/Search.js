@@ -23,12 +23,12 @@ export default function Search({genreState, genreDispatch, setUrl}) {
     }
 
     return (
-        <div className="d-flex">
-            <ul className="navbar-nav me-auto mb-lg-0">
+        <div className="d-flex ">
+            <ul className="navbar-nav me-auto mb-lg-0 align-items-center">
                 <li className="m-auto">
                     <GenreSearch genreState={genreState} genreDispatch={genreDispatch} setUrl={setUrl}/>
                 </li>
-                <li>
+                <li title="switch to title/year">
                     <div className="form-check form-switch toggle-button">
                         <input className="form-check-input" type="checkbox" onChange={handleToggle}
                                id="flexSwitchCheckDefault"/>

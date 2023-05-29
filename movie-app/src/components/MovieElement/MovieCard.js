@@ -1,11 +1,12 @@
 import AddToCart from "../AddToCart";
 import {useState} from 'react';
 import {useCart} from "../../contexts/CartContext";
-import '../../stylesheets/colors.css'
+import '../../stylesheets/movieCard.css'
 import {ArrowsAngleExpand} from "react-bootstrap-icons"
 import MovieModal from "./MovieModal";
 import MovieCardPlaceholder from "./MovieCardPlaceholder";
 import useFirstMount from "../useFirstMount";
+
 
 const MovieCard = ({ element , index}) => {
     const [isCardLoad, setIsCardLoad] = useState(false)
