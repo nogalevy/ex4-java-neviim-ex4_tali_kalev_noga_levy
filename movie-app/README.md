@@ -29,7 +29,9 @@ and then input search request into search bar.
 
 
 ### Server Side:
-- some server side stuff
+The server side is responsible for two main things-
+1. Saving in the users cart data in Spring sessions
+2. Saving data of the user upon a successful purchase in the SQL database
 
 ## Additional Note:
 - only previous searches of type 'Title' are added to the search history
@@ -37,7 +39,8 @@ and then input search request into search bar.
 - each movie/tv show has a modal, once opened displays more details about the item
 - the default items displayed are "trending" movies and tv shows retrieved using the
   '/trending/all/week?&language=en-US' TMDB API
-
+- if upon searching by year the TMDB API does not find movies with that release date, 
+it returns trending page data
 ## ============================================
 
 ## README PROVIDED:
