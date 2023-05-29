@@ -110,7 +110,8 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
                     handleInputChange(e);
                 }}
             />
-            <SearchHistory historyState={historyState} historyDispatch={historyDispatch} setSubmitValue={setSubmitValue}/>
+
+            <SearchHistory show={inputType === InputTypes.TITLE } historyState={historyState} historyDispatch={historyDispatch} setSubmitValue={setSubmitValue}/>
             </form>
     );
 

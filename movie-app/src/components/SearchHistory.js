@@ -9,7 +9,7 @@ import {XLg} from "react-bootstrap-icons";
  * @returns {JSX.Element} displaying search history dropdown
  * @constructor
  */
-export default function SearchHistory({historyState, historyDispatch, setSubmitValue}){
+export default function SearchHistory({show, historyState, historyDispatch, setSubmitValue}){
 
     /**
      * renders search history items in dropdown
@@ -35,7 +35,7 @@ export default function SearchHistory({historyState, historyDispatch, setSubmitV
     };
 
     return(
-        <ul className={`dropdown-menu dropdown-menu-dark ${historyState.list && historyState.list.length > 0 ? "visible" : "invisible"}`}>
+        <ul className={`dropdown-menu dropdown-menu-dark ${show  && historyState.list && historyState.list.length > 0 ? "visible" : "invisible"}`}>
             {renderDropdown()}
             <li>
                 <hr className="dropdown-divider" />
