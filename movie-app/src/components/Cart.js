@@ -38,7 +38,6 @@ export default function Cart() {
     //tali: tried to add stick-top to stick purchase buttons to the right side - didnt work
     return (
         <div className="container">
-
             <div className="d-flex flex-column justify-content-center">
                 <h2 >Your Cart</h2>
                     {Object.keys(state.cart).length ?
