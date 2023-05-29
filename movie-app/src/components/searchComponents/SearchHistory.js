@@ -24,10 +24,15 @@ export default function SearchHistory({show, historyState, historyDispatch, setS
             reversedList.map((item, index) => {
                 return (
                     <li className="container d-flex justify-content-between align-items-center" key={index}>
-                        <div className="dropdown-item" onClick={(e) => { setSubmitValue(item)} }>
+                        <div className="dropdown-item" onClick={(e) => {
+                            setSubmitValue(item);
+                            console.log("add")
+                        } }>
                             {item}
                         </div>
-                        <div className="mt-1 btn" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>
+                        <div className="mt-1 btn" onClick={() => {
+                            historyDispatch({type:Action.DELETE, payload: item});
+                        }}>
                             <XLg className="text-secondary"/>
                         </div>
                     </li>
