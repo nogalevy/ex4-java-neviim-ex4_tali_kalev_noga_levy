@@ -22,12 +22,12 @@ export default function SearchHistory({show, historyState, historyDispatch, setS
             reversedList.map((item, index) => {
                 return (
                     <li className="container d-flex justify-content-between align-items-center" key={index}>
-                        <a className="dropdown-item" onClick={(e) => { setSubmitValue(item)} } href="#">
+                        <div className="dropdown-item" onClick={(e) => { setSubmitValue(item)} }>
                             {item}
-                        </a>
-                        <a className="mt-1 btn" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>
+                        </div>
+                        <div className="mt-1 btn" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>
                             <XLg className="text-secondary"/>
-                        </a>
+                        </div>
                     </li>
                 );
             })
@@ -41,12 +41,12 @@ export default function SearchHistory({show, historyState, historyDispatch, setS
                 <hr className="dropdown-divider" />
             </li>
             <li>
-                <a
+                <div
                     className="dropdown-item"
                     onClick={() => historyDispatch({ type: Action.CLEAR })}
                 >
                     Clear Search History
-                </a>
+                </div>
             </li>
         </ul>
 

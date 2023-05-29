@@ -52,13 +52,13 @@ export default function GenreSearch({genreState, genreDispatch, setUrl}){
         return genreData.genres.map((genre) => {
             return (
                 <li key={genre.id}>
-                    <a className="dropdown-item" href="#">
+                    <div className="dropdown-item">
                         <div className="form-check">
                             <input className="form-check-input" onChange={handleChange} type="checkbox"
                                    checked={genreState.list.includes(genre.id.toString())} value="" id={genre.id}/>
                             <label className="form-check-label" htmlFor={genre.id}>{genre.name}</label>
                         </div>
-                    </a>
+                    </div>
                 </li>
             )
         })
@@ -67,7 +67,8 @@ export default function GenreSearch({genreState, genreDispatch, setUrl}){
     return(
         <div className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="\" role="button" data-bs-toggle="dropdown"
-               aria-expanded="false">
+               // aria-expanded="false"
+            >
                 Choose Genre
             </a>
             <ul className="dropdown-menu">
