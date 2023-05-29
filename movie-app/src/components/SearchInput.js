@@ -4,9 +4,9 @@ import listReducer from "../reducers/listReducer";
 import createMovieApiUrl from "./movieApiUrl";
 import SearchHistory from "./SearchHistory";
 import {useLocation, useNavigate} from "react-router-dom";
+import {getUrlDiscoverByYear, getUrlSearchByQuery} from "../consts/utills";
 
 /**
- *
  * @param inputType toggle value - by year or by title
  * @param genreDispatch dispatch to change genre list state
  * @param setUrl string
@@ -43,9 +43,9 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
     const handleURL = () => {
         let u;
         if (inputType === InputTypes.TITLE) {
-            u = `/search/multi?query=${submitValue}&include_adult=false&language=en-US&page=1`
+            u = getUrlSearchByQuery(submitValue);
         } else if (inputType === InputTypes.YEAR) {
-            u = `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=${submitValue}&sort_by=popularity.desc`
+            u = getUrlDiscoverByYear(submitValue);
         }
         if (location.pathname !== '/') navigate('/');
         setUrl(createMovieApiUrl(u));
