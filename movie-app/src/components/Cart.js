@@ -4,6 +4,7 @@ import axios from "axios";
 import CartItemCard from "./CartItemCard";
 import React, {useState} from "react";
 import "../stylesheets/colors.css"
+import "../stylesheets/cart.css"
 import {PRICE, REQUEST_FAIL_MSG} from "../consts/consts";
 import toastify from "../consts/toastify";
 import Spinner from "./Spinner";
