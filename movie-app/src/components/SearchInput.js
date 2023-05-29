@@ -84,13 +84,13 @@ export default function SearchInput({inputType, genreDispatch, setUrl}) {
         return (
                 reversedList.map((item, index) => {
                 return (
-                    <li className="container d-flex justify-content-between" key={index}>
+                    <li className="container d-flex justify-content-between align-items-center" key={index}>
                         <a className="dropdown-item" onClick={(e) => { setSubmitValue(item)} } href="#">
                             {item}
                         </a>
-                        <a className="mt-1" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>
+                        <button className="mt-1 btn" onClick={() => historyDispatch({type:Action.DELETE, payload: item})}>
                             <XLg className="text-secondary"/>
-                        </a>
+                        </button>
                     </li>
                 );
                 })
