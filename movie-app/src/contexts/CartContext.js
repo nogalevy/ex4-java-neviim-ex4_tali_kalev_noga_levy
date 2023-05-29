@@ -6,7 +6,7 @@ const CartContext = React.createContext();
 
 /**
  * A component that renders some children wrapped
- * in a CountContext.Provider so they can access the count context
+ * in a CartContext.Provider so they can access the cart context
  * @param children
  * @returns {JSX.Element}
  * @constructor
@@ -20,10 +20,10 @@ function CartProvider({children}) {
 }
 
 /**
- * A function (custom hook) that returns the count context
+ * A function (custom hook) that returns the cart context
  * the consumer of context must have access, in other words
- * it must be below a CountContext.Provider.
- * The function CountProvider.Consumer is a shorthand for it
+ * it must be below a CartContext.Provider.
+ * The function CartProvider.Consumer is a shorthand for it
  * @returns {unknown}
  */
 function useCart() {

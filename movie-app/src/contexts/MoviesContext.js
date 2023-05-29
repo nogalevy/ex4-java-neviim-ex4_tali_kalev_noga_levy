@@ -4,7 +4,7 @@ const MoviesContext = React.createContext();
 
 /**
  * A component that renders some children wrapped
- * in a CountContext.Provider so they can access the count context
+ * in a MoviesContext.Provider so they can access the count context
  * @param children
  * @returns {JSX.Element}
  * @constructor
@@ -23,8 +23,8 @@ export function MoviesProvider({children}){
 /**
  * A function (custom hook) that returns the context
  * the consumer of context must have access, in other words
- * it must be below a CountContext.Provider.
- * The function CountProvider.Consumer is a shorthand for it
+ * it must be below a MoviesContext.Provider.
+ * The function MoviesProvider.Consumer is a shorthand for it
  * @returns {unknown}
  */
 export function useMoviesContext() {

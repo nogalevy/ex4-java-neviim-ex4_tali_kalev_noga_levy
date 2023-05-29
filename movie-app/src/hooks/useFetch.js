@@ -14,7 +14,6 @@ export default function useFetch(url){
         const fetchData = async () =>  {
             try{
                 const res = await axios(url);
-
                 const dataToReturn = res.data
                 setData(dataToReturn);
                 setError(null);
